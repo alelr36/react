@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Mutombo ReactJS</title>
+    <script src='http://fb.me/react-0.11.1.js'></script>
+    <script src='http://fb.me/JSXTransformer-0.11.1.js'></script>
+</head>
+<body>
+    <script type='text/jsx'>
+        /*** @jsx React.DOM */
+/*
+        var Debt = React.createClass({
+            propTypes:{
+                name: React.PropTypes.string.isRequired,
+                cat: React.PropTypes.string
+            },
+
+            getDefaultProps: function () {
+                return {
+                    cat: 'Mutmobo'
+                }
+            },
+
+            render: function () {
+                return (
+                        <div className='card'>
+                        <img src='http://facebook.github.io/react/img/logo_small.png'/>
+                            <div className='debt-data'>
+                                <p>{this.props.name}</p>
+                                <p>{this.props.cat}</p>
+                                <input enabled='false' type='date' value='2013-01-08' />
+                            </div>
+                        </div>
+                );
+            }
+        });
+
+        var DebtColumn = React.createClass({
+
+            render: function () {
+                return (
+                        <div className='debt-column'>
+                            <Debt name='Javi' />
+                            <Debt name='Feo' />
+                            <Debt name='Turco' />
+                        </div>
+                );
+            }
+        });*/
+
+        React.renderComponent(
+            <DebtColumn className='debt-column'/>, document.body);
+
+    </script>
+
+</body>
+</html>
