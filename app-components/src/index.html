@@ -9,11 +9,12 @@
 <body>
     <script type='text/jsx'>
         /*** @jsx React.DOM */
-/*
+
         var Debt = React.createClass({
             propTypes:{
                 name: React.PropTypes.string.isRequired,
-                cat: React.PropTypes.string
+                cat: React.PropTypes.string,
+                user: React.PropTypes.string
             },
 
             getDefaultProps: function () {
@@ -25,7 +26,7 @@
             render: function () {
                 return (
                         <div className='card'>
-                        <img src='http://facebook.github.io/react/img/logo_small.png'/>
+                        <img src={this.getUser()}/>
                             <div className='debt-data'>
                                 <p>{this.props.name}</p>
                                 <p>{this.props.cat}</p>
@@ -33,21 +34,30 @@
                             </div>
                         </div>
                 );
+            },
+
+            getUser:function() {
+                return (
+                        'https://graph.facebook.com/' + this.props.user + '/picture?width=200&height=200' 
+                )
             }
         });
+
+
 
         var DebtColumn = React.createClass({
 
             render: function () {
                 return (
                         <div className='debt-column'>
-                            <Debt name='Javi' />
-                            <Debt name='Feo' />
-                            <Debt name='Turco' />
+                            <Debt name='Javi' user='kavi089'/>
+                            <Debt name='Feo' user='nicolas.siandro' />
+                            <Debt name='Turco' user='turco.remedi' />
+                            <Debt name='Ale' user='ale.arce.lr'/>
                         </div>
                 );
             }
-        });*/
+        });
 
         React.renderComponent(
             <DebtColumn className='debt-column'/>, document.body);

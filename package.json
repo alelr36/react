@@ -8,6 +8,7 @@
   "engine": "node 0.10.26",
   "devDependencies": {
     "gulp-react": "^1.0.0",
-    "gulp": "^3.8.7"
+    "gulp": "^3.8.7",
+    "express": "3.x"
   }
 }
