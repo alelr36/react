@@ -9,6 +9,9 @@
   "devDependencies": {
     "gulp-react": "^1.0.0",
     "gulp": "^3.8.7",
-    "express": "3.x"
+    "express": "3.x",
+    "gulp-browserify": "^0.5.0",
+    "gulp-concat": "^2.3.4",
+    "reactify": "^0.14.0"
   }
 }
