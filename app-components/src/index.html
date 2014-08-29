@@ -2,67 +2,11 @@
 <html lang='en'>
 <head>
     <meta charset='UTF-8'>
-    <title>Mutombo ReactJS</title>
+    <title>MutombAPP</title>
     <script src='http://fb.me/react-0.11.1.js'></script>
     <script src='http://fb.me/JSXTransformer-0.11.1.js'></script>
+    <script type="text/jsx" src="/static/main.js"></script>
 </head>
 <body>
-    <script type='text/jsx'>
-        /*** @jsx React.DOM */
-
-        var Debt = React.createClass({
-            propTypes:{
-                name: React.PropTypes.string.isRequired,
-                cat: React.PropTypes.string,
-                user: React.PropTypes.string
-            },
-
-            getDefaultProps: function () {
-                return {
-                    cat: 'Mutmobo'
-                }
-            },
-
-            render: function () {
-                return (
-                        <div className='card'>
-                        <img src={this.getUser()}/>
-                            <div className='debt-data'>
-                                <p>{this.props.name}</p>
-                                <p>{this.props.cat}</p>
-                                <input enabled='false' type='date' value='2013-01-08' />
-                            </div>
-                        </div>
-                );
-            },
-
-            getUser:function() {
-                return (
-                        'https://graph.facebook.com/' + this.props.user + '/picture?width=200&height=200' 
-                )
-            }
-        });
-
-
-
-        var DebtColumn = React.createClass({
-
-            render: function () {
-                return (
-                        <div className='debt-column'>
-                            <Debt name='Javi' user='kavi089'/>
-                            <Debt name='Feo' user='nicolas.siandro' />
-                            <Debt name='Turco' user='turco.remedi' />
-                            <Debt name='Ale' user='ale.arce.lr'/>
-                        </div>
-                );
-            }
-        });
-
-        React.renderComponent(
-            <DebtColumn className='debt-column'/>, document.body);
-
-    </script>
-
 </body>
 </html>
