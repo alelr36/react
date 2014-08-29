@@ -1,5 +1,3 @@
-/*** @jsx React.DOM */
-
 var React = require('react'),
     Debt = require('../debt/debt');
 

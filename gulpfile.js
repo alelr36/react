@@ -9,13 +9,18 @@ var browserify = require('gulp-browserify'),
 gulp.task('copy', function() {
     gulp.src('./app-components/src/index.html')
         .pipe(gulp.dest('./app-components/target'));
+}); 
+
+gulp.task('copy-css', function() {
+    gulp.src('./app-components/src/components/**/*.css')
+        .pipe(gulp.dest('./app-components/target/components'));
 });
 
 gulp.task('browserify', function() {
     gulp.src('./app-components/src/main.js')
         .pipe(browserify({transform: 'reactify'}))
         .pipe(concat('main.js'))
-        .pipe(gulp.dest('./app-components/target/main.js'));
+        .pipe(gulp.dest('./app-components/target'));
 });
 
 gulp.task('compile-react', function () {
@@ -24,4 +29,4 @@ gulp.task('compile-react', function () {
         .pipe(gulp.dest('./app-components/target/components'));
 });
 
-gulp.task('default', ['compile-react', 'browserify', 'copy']);
+gulp.task('default', ['compile-react', 'browserify', 'copy', 'copy-css']);
