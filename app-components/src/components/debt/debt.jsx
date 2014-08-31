@@ -16,7 +16,7 @@ var Debt = React.createClass({
     render: function () {
         return (
                 <div className='card'>
-                <img src={this.getUser()}/>
+                <img className="pic" src={this.getUser()}/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
                         <p>{this.props.cat}</p>

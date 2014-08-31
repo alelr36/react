@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
  
-app.use('/static', express.static(__dirname + '/app-components/target'));
+app.use('/assets', express.static(__dirname + '/app-components/target'));
 
 app.listen(3000);
 
