@@ -7,8 +7,11 @@
   "dependencies": {},
   "engine": "node 0.10.26",
   "devDependencies": {
-    "gulp-react": "^1.0.0",
+    "express": "3.x",
     "gulp": "^3.8.7",
-    "express": "3.x"
+    "gulp-browserify": "^0.5.0",
+    "gulp-concat": "^2.3.4",
+    "react": "^0.11.1",
+    "reactify": "^0.14.0"
   }
 }

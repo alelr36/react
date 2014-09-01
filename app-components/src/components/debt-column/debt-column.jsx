@@ -1,15 +1,22 @@
 var React = require('react'),
-    ReactDisplay = require('components/react-mixins/swa-react-display');
+    Debt = require('../debt/debt');
 
-module.exports = React.createClass({
+var DebtColumn = React.createClass({
 
     render: function () {
         return (
-            <div className='debt-column'>
-                <Debt name='Javi' />
-                <Debt name='Feo' />
-                <Debt name='Turco' />
-            </div>
+                <div className='debt-column'>
+                    <Debt name='Javi' user='kavi089'/>
+                    <Debt name='Feo' user='nicolas.siandro' />
+                    <Debt name='Turco' user='turco.remedi' />
+                    <Debt name='Ale' user='ale.arce.lr'/>
+                    <Debt name='Soler' user='martosoler'/>
+                    <Debt name='David' user='Dave.Fuentes' />
+                    <Debt name='Mema' user='hernan.seghetti' />
+                    <Debt name='Maxi' user='charca'/>
+                </div>
         );
     }
 });
+
+module.exports = DebtColumn;
