@@ -28,7 +28,7 @@ var Debt = React.createClass({
 
     getUser:function() {
         return (
-                'https://graph.facebook.com/' + this.props.user + '/picture?width=200&height=200' 
+                'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150' 
         )
     }
 });

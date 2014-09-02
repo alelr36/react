@@ -13,18 +13,10 @@ body {
   margin:0 1rem 1rem;
   border-radius:3px;
   transform-origin:top left;
+  display: inline-block;
 }
 
 .pic {
   border-radius:5px;
   box-shadow:2px 1px 2px #aaa;
-}
-
-.debt-column {
-  -moz-column-count: 4;
-  -moz-column-gap: 5px;
-  -webkit-column-count: 4;
-  -webkit-column-gap: 5px;
-  column-count: 4;
-  column-gap: 5px;
 }

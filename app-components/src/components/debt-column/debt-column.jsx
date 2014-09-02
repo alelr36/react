@@ -4,18 +4,15 @@ var React = require('react'),
 var DebtColumn = React.createClass({
 
     render: function () {
+        var rows = [];
+
+        this.props.debtList.forEach( function(debtList) {
+            rows.push(<Debt className="card" user={debtList.user} name={debtList.name} />);
+        });        
+
         return (
-                <div className='debt-column'>
-                    <Debt name='Javi' user='kavi089'/>
-                    <Debt name='Feo' user='nicolas.siandro' />
-                    <Debt name='Turco' user='turco.remedi' />
-                    <Debt name='Ale' user='ale.arce.lr'/>
-                    <Debt name='Soler' user='martosoler'/>
-                    <Debt name='David' user='Dave.Fuentes' />
-                    <Debt name='Mema' user='hernan.seghetti' />
-                    <Debt name='Maxi' user='charca'/>
-                </div>
-        );
+            <div className='debt-column'>{rows}</div>
+        )
     }
 });
 
