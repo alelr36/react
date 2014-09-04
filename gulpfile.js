@@ -29,4 +29,10 @@ gulp.task('compile-react', function () {
         .pipe(gulp.dest('./app-components/target/components'));
 });
 
-gulp.task('default', ['compile-react', 'browserify', 'copy', 'copy-css']);
+gulp.task('watch', ['build'], function() {
+    gulp.watch('./app-components/src/**/*', ['build']);
+});
+
+gulp.task('build', ['compile-react', 'browserify', 'copy', 'copy-css']);
+
+gulp.task('default', ['watch']);
