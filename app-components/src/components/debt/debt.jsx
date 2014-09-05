@@ -20,9 +20,8 @@ var Debt = React.createClass({
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
                         <p>{this.props.cat}</p>
-                        <p>ID: {this.createId}</p>
                         <input enabled='false' type='date' value='2013-01-08' />
-                        <input type='button' value='Pagó' />
+                        <input type='button' value='Pagau' onClick={this.deleteCard} />
                     </div>
                 </div>
         );
@@ -34,10 +33,12 @@ var Debt = React.createClass({
         )
     },
 
-    createId: function() {
-        var d = new Date();
-        var n = d.getTime();
-        alert(n);
+    deleteCard: function() {
+        var fredRef = new Firebase('https://mutombo-cards.firebaseio.com/' + this.props.cardId);
+        
+        if (confirm("Vas a borrar una card, are you sure?")) { 
+            fredRef.remove();
+        }
     }    
 });
 

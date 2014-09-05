@@ -1,5 +1,6 @@
 var React = require('react'),
     Debt = require('../debt/debt'),
+    NewCard = require('../new-card/new-card'),
     Firebase = require('firebase');
 
 var DebtColumn = React.createClass({
@@ -9,10 +10,13 @@ var DebtColumn = React.createClass({
     },
 
     componentWillMount: function() {
-        this.firebaseRefs = new Firebase("https://radiant-inferno-3233.firebaseio.com/");
+        this.firebaseRefs = new Firebase("https://mutombo-cards.firebaseio.com/");
         
         this.firebaseRefs.on('child_added', function(data) {
-            this.cards.push(data.val());
+            this.cards.push({
+                id: data.name(),
+                data: data.val()
+            });
             this.setState({
                 cards: this.cards
             });
@@ -22,10 +26,12 @@ var DebtColumn = React.createClass({
             var lessCards = [];
 
             for (var i = 0; i < this.cards.length ; i++) {
-                if (this.cards[i].user !== data.val().user) {
+                if (this.cards[i].id !== data.name()) {
                     lessCards.push(this.cards[i]);
                 }
             }
+
+            this.cards = lessCards
 
             this.setState({
                 cards: lessCards
@@ -38,11 +44,14 @@ var DebtColumn = React.createClass({
         var rows = [];
 
         this.state.cards.forEach( function(debtList) {
-            rows.push(<Debt className="card" user={debtList.user} name={debtList.name} />);
+            rows.push(<Debt className="card" cardId={debtList.id} user={debtList.data.user} name={debtList.data.name} />);
         });        
 
         return (
-            <div className='debt-column'>{rows}</div>
+            <div>
+                <NewCard />
+                <div className='debt-column'>{rows}</div>
+            </div>
         )
     }
 });
