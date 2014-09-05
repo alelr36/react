@@ -44,7 +44,13 @@ var DebtColumn = React.createClass({
         var rows = [];
 
         this.state.cards.forEach( function(debtList) {
-            rows.push(<Debt className="card" cardId={debtList.id} user={debtList.data.user} name={debtList.data.name} />);
+            rows.push(<Debt 
+                        className="card" 
+                        cardId={debtList.id} 
+                        user={debtList.data.user} 
+                        name={debtList.data.name} 
+                        cat={debtList.data.cat} 
+                        date={debtList.data.date} />);
         });        
 
         return (
