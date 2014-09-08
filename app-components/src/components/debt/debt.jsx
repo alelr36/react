@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    Moment = require('moment');
 
 var Debt = React.createClass({
     propTypes:{

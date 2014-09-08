@@ -57,6 +57,7 @@ var DebtColumn = React.createClass({
             <div>
                 <NewCard />
                 <div className='debt-column'>{rows}</div>
+                <div id="background-overlay"></div>
             </div>
         )
     }
