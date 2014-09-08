@@ -7,29 +7,38 @@ var Debt = React.createClass({
         user: React.PropTypes.string
     },
 
-    getDefaultProps: function () {
+    getDefaultProps : function () {
         return {
             cat: 'Mutombo'
         }
     },
 
-    render: function () {
+    render : function () {
         return (
                 <div className='card'>
                 <img className="pic" src={this.getUser()}/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
-                        <p>{this.props.cat}</p>
-                        <input enabled='false' type='date' value='2013-01-08' />
+                        <p>Razon: {this.props.cat}</p>
+                        <p>Fecha: {this.props.date} </p>
+                        <input type='button' value='Pagau' onClick={this.deleteCard} />
                     </div>
                 </div>
         );
-    },
+    },    
 
-    getUser:function() {
+    getUser: function () {
         return (
-                'https://graph.facebook.com/' + this.props.user + '/picture?width=200&height=200' 
+                'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150' 
         )
+    },    
+
+    deleteCard: function() {
+        var fredRef = new Firebase('https://mutombo-cards.firebaseio.com/' + this.props.cardId);
+        
+        if (confirm("Vas a borrar una card, are you sure?")) { 
+            fredRef.remove();
+        }       
     }
 });
 
