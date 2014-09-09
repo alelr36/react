@@ -1,4 +1,5 @@
 var React = require('react'),
+    Moment = require('moment'),
 	Firebase = require('firebase');
 
 NewCard = React.createClass ({
@@ -70,25 +71,14 @@ NewCard = React.createClass ({
     			name: document.getElementById("usersSelect").options[document.getElementById("usersSelect").selectedIndex].innerHTML,
     			user: document.getElementById("usersSelect").value,
     			cat: document.getElementById("cat").options[document.getElementById("cat").selectedIndex].innerHTML,
-    			date: this.getDate()
+    			date: Moment(Date.now()).format('DD/MM/YYYY, hh:mm')
     		});
             this.showNewCard();
         }
         else {
             alert('Solo Chuck Norris puede mutombear a Mutombo!');
         }
-	},
-
-	getDate: function () {
-        var d = new Date();
-        var curr_date = d.getDate();
-        var curr_month = d.getMonth() + 1;
-        var curr_year = d.getFullYear();
-        var curr_hours = d.getHours();
-        var curr_mins = d.getMinutes();
-
-        return (curr_date + "/" + curr_month + "/" + curr_year + " - " + curr_hours + ":" + curr_mins + "hs");
-    }
+	}
 });
 
 module.exports = NewCard;

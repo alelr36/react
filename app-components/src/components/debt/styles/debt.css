@@ -14,6 +14,7 @@ body {
   border-radius:3px;
   transform-origin:top left;
   display: inline-block;
+  width: 200px;
 }
 
 .pic {
@@ -33,4 +34,12 @@ body {
   width: 100%;
   height: 100%;
   display: none;
+}
+
+.red-card {
+  background: #CD9B9B;
+}
+
+.really-red-card {
+  background: #FF0000;
 }

@@ -15,8 +15,21 @@ var Debt = React.createClass({
     },
 
     render : function () {
+        var cardDate = Moment(this.props.date).format('M');
+        var now = Moment(Date.now()).format('M');
+        var classes = 'card';
+
+        if(cardDate < now-12) {
+            classes = 'card really-red-card';
+        }
+        else {
+            if(cardDate < now-7) {
+                classes = 'card red-card';
+            }
+        }
+
         return (
-                <div className='card'>
+                <div className={classes}>
                 <img className="pic" src={this.getUser()}/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
@@ -26,7 +39,7 @@ var Debt = React.createClass({
                     </div>
                 </div>
         );
-    },    
+    }, 
 
     getUser: function () {
         return (
