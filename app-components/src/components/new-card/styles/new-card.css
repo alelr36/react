@@ -1,0 +1,48 @@
+.card {
+    width: 200px;
+}
+
+.hidden {
+    display: none;
+}
+
+.pretty-button {
+    border: none;
+    background-color: white;
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    z-index: 400;
+}
+
+.new-card-container {
+    padding: 5px;
+    margin: 10px 47%;
+    z-index: 400;
+}
+
+#new-card-box {
+    position: absolute;
+    background-color: #FCFCFC;
+    padding: 15px;
+    left: 39%;
+    border-radius: 10px;
+    border: 1px solid #CACACA;
+    z-index: 400;
+}
+
+.default-image {
+    width: 160px;
+    height: 160px;
+    display: block;
+    clear: both;
+    margin: 10px auto;
+}
+
+.new-card-container:hover {
+    cursor: default;
+}
+
+.new-card-paragraph {
+    margin: 0;
+}

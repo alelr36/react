@@ -14,6 +14,7 @@ body {
   border-radius:3px;
   transform-origin:top left;
   display: inline-block;
+  width: 200px;
 }
 
 .pic {
@@ -24,4 +25,23 @@ body {
 .button {
   margin-top: 10px;
   width: 100%;
+}
+
+#background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .7;
+  z-index: 200;
+}
+
+.red-card {
+  background: #CD9B9B;
+}
+
+.really-red-card {
+  background: #FF0000;
 }
