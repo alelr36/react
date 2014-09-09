@@ -40,6 +40,11 @@ var DebtColumn = React.createClass({
         }.bind(this));              
     },
 
+    hideAllOverlays: function () {
+        document.getElementById('background-overlay').classList.add('hidden');
+        document.getElementById('new-card-box').classList.add('hidden');
+    },
+
     render: function () {
         var rows = [];
 
@@ -55,9 +60,9 @@ var DebtColumn = React.createClass({
 
         return (
             <div>
+                <div id="background-overlay" className='hidden' onClick={this.hideAllOverlays}></div>
                 <NewCard />
                 <div className='debt-column'>{rows}</div>
-                <div id="background-overlay"></div>
             </div>
         )
     }

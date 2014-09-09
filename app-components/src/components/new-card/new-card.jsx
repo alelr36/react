@@ -22,6 +22,7 @@ NewCard = React.createClass ({
                         <option value='nicolas.siandro'>Nicolas Siandro</option>
                         <option value='charca'>Maxi Ferreira</option>
                         <option value='sanozukecze'>Gonza Miranda</option>
+                        <option value='julio.danni'>July</option>
                     </select>
                     <select id='cat'>
                         <option value='mutombo' selected={true}>Mutombo</option>
@@ -55,11 +56,14 @@ NewCard = React.createClass ({
 
     showNewCard: function (e) {
         var element = document.getElementById('new-card-box');
+        var background = document.getElementById('background-overlay');
         if (!element.className.match('hidden')) {
             element.classList.add('hidden');
+            background.classList.add('hidden');
         }
         else {
             element.classList.remove('hidden');
+            background.classList.remove('hidden');
         }
     },
 
