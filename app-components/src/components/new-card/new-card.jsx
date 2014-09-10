@@ -54,6 +54,12 @@ NewCard = React.createClass ({
         }
     },
 
+    resetForm: function () {
+        document.getElementById('usersSelect').selectedIndex = 0;
+        document.getElementById('cat').selectedIndex = 0;
+        this.getImage();
+    },
+
     showNewCard: function (e) {
         var element = document.getElementById('new-card-box');
         var background = document.getElementById('background-overlay');
@@ -75,13 +81,15 @@ NewCard = React.createClass ({
     			name: document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
     			user: document.getElementById('usersSelect').value,
     			cat: document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML,
-    			date: Moment(Date.now()).format('DD/MM/YYYY, hh:mm')
+    			date: Moment().format('MM/DD/YYYY, HH:mm')
     		});
             this.showNewCard();
         }
         else {
             alert('Solo Chuck Norris puede mutombear a Mutombo!');
         }
+
+        this.resetForm()
 	}
 });
 

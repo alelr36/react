@@ -19,7 +19,6 @@ body {
 
 .pic {
   border-radius:5px;
-  box-shadow:2px 1px 2px #aaa;
 }
 
 .button {
@@ -38,10 +37,10 @@ body {
   z-index: 200;
 }
 
-.red-card {
-  background: #CD9B9B;
+.yellow-card {
+  background: #FFCC00;
 }
 
-.really-red-card {
+.red-card {
   background: #FF0000;
 }

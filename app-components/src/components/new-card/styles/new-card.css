@@ -1,7 +1,3 @@
-.card {
-    width: 200px;
-}
-
 .hidden {
     display: none;
 }
@@ -13,12 +9,16 @@
     padding: 5px;
     border-radius: 3px;
     z-index: 400;
+    position: relative;
+}
+
+.new-card {
+    z-index: 400;
 }
 
 .new-card-container {
     padding: 5px;
-    margin: 10px 47%;
-    z-index: 400;
+    margin: 10px 47%;    
 }
 
 #new-card-box {
@@ -27,8 +27,7 @@
     padding: 15px;
     left: 39%;
     border-radius: 10px;
-    border: 1px solid #CACACA;
-    z-index: 400;
+    border: 1px solid #CACACA;    
 }
 
 .default-image {

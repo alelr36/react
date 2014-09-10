@@ -15,16 +15,17 @@ var Debt = React.createClass({
     },
 
     render : function () {
-        var cardDate = Moment(this.props.date).format('M');
-        var now = Moment(Date.now()).format('M');
-        var classes = 'card';
+        var sevenDays = Moment(Moment().subtract('days', 7)).format('MM/DD/YYYY');
+        var twelveDays = Moment(Moment().subtract('days', 12)).format('MM/DD/YYYY');
+        
+        var classes = 'card';              
 
-        if(cardDate < now-12) {
-            classes = 'card really-red-card';
+        if(this.props.date < twelveDays) {
+            classes += ' red-card';
         }
         else {
-            if(cardDate < now-7) {
-                classes = 'card red-card';
+            if(this.props.date < sevenDays) {
+                classes += ' yellow-card';
             }
         }
 
