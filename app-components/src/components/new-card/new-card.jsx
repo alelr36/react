@@ -35,11 +35,11 @@ NewCard = React.createClass ({
 			<div className='new-card-container'>
 				<input className='pretty-button' type='button' value='New Card' onClick={this.showNewCard}/>
                 <div className='new-card hidden' id='new-card-box'>
-                    <select id='usersSelect' onChange={this.getImage}>
+                    <select id='usersSelect' className='dropdown' onChange={this.getImage}>
                         <option value='select' selected={true}>Seleccione Usuario</option>
                         {users}
                     </select>
-                    <select id='cat'>
+                    <select id='cat' className='dropdown'>
                         <option value='mutombo' selected={true}>Mutombo</option>
                         <option value='mugre'>Mugre</option>
                         <option value='reunion'>Llamada en Reunión</option> 
