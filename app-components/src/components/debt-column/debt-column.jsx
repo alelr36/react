@@ -43,6 +43,13 @@ var DebtColumn = React.createClass({
     hideAllOverlays: function () {
         document.getElementById('background-overlay').classList.add('hidden');
         document.getElementById('new-card-box').classList.add('hidden');
+        this.resetForm();
+    },
+
+    resetForm: function () {
+        document.getElementById('usersSelect').selectedIndex = 0;
+        document.getElementById('cat').selectedIndex = 0;
+        document.getElementById('selectedImage').src = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
     },
 
     render: function () {

@@ -42,7 +42,7 @@ NewCard = React.createClass ({
                     <select id='cat'>
                         <option value='mutombo' selected={true}>Mutombo</option>
                         <option value='mugre'>Mugre</option>
-                        <option value='reunion'>Llamada en Reunión</option>
+                        <option value='reunion'>Llamada en Reunión</option> 
                         <option value='demo'>Demo Exitosa</option>
                         <option value='ingreso'>Ingreso</option>
                         <option value='cumple'>Cumpleaños</option>
@@ -50,8 +50,8 @@ NewCard = React.createClass ({
                         <option value='buildFailure'>Build Failure</option>
                         <option value='otra'>Otra...</option>
                     </select>
-                    <img className='default-image' src={this.state.imageSrc} />
-    				<input className='button' type='button' value='Add' onClick={this.addCard}/>
+                    <img id="selectedImage" className='default-image' src={this.state.imageSrc} />
+    				<input className='midnight-blue-flat-button' type='button' value='Add' onClick={this.addCard}/>
                 </div>
             </div>
 		)
@@ -68,13 +68,7 @@ NewCard = React.createClass ({
                     imageSrc: 'https://graph.facebook.com/' + document.getElementById('usersSelect').value + '/picture?width=150&height=150'
             });
         }
-    },
-
-    resetForm: function () {
-        document.getElementById('usersSelect').selectedIndex = 0;
-        document.getElementById('cat').selectedIndex = 0;
-        this.getImage();
-    },
+    },    
 
     showNewCard: function (e) {
         var element = document.getElementById('new-card-box');
@@ -86,7 +80,7 @@ NewCard = React.createClass ({
         else {
             element.classList.remove('hidden');
             background.classList.remove('hidden');
-        }
+        }        
     },
 
 	addCard: function () {
@@ -99,14 +93,31 @@ NewCard = React.createClass ({
     			cat: document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML,
     			date: Moment().format('MM/DD/YYYY, HH:mm')
     		});
-            this.showNewCard();
+            this.showNewCard();            
+            this.logAdd();
         }
         else {
             alert('Solo Chuck Norris puede mutombear a Mutombo!');
-        }
+        }        
+        this.resetForm();
+	},
 
-        this.resetForm()
-	}
+    resetForm: function () {
+        document.getElementById('usersSelect').selectedIndex = 0;
+        document.getElementById('cat').selectedIndex = 0;
+        document.getElementById('selectedImage').src = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+    },
+
+    logAdd: function () {
+        firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
+
+        firebaseLogRefs.push({
+            type: "Adding card",
+            entry: "Card: " + document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
+            reason: document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML,
+            date: Moment().format('DD/MM/YYYY, HH:mm')
+        });
+    }
 });
 
 module.exports = NewCard;

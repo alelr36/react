@@ -15,8 +15,8 @@ var Debt = React.createClass({
     },
 
     render : function () {
-        var sevenDays = Moment(Moment().subtract('days', 7)).format('MM/DD/YYYY');
-        var twelveDays = Moment(Moment().subtract('days', 12)).format('MM/DD/YYYY');
+        var sevenDays = Moment(Moment().subtract(7, 'days')).format('MM/DD/YYYY');
+        var twelveDays = Moment(Moment().subtract(12, 'days')).format('MM/DD/YYYY');
         
         var classes = '';
 
@@ -34,24 +34,29 @@ var Debt = React.createClass({
                     <img className={classes +' pic'} src={this.getUser()}/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
-                        <p>Razon: {this.props.cat}</p>
+                        <p>{this.props.cat}</p>
                         <p>Fecha: {Moment(this.props.date).format('DD-MM-YYYY - HH:mm')} </p>
-                        <input type='button' value='Paid' onClick={this.deleteCard} />
+                        <input className='clouds-flat-button' type='button' value='Paid' onClick={this.deleteCard} />
                     </div>
                 </div>
         );
     }, 
 
     getUser: function () {
+        var userpicture = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+
+        if (!(this.props.user === "")) {
+            userpicture = 'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150';
+        }
         return (
-                'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150' 
+               userpicture  
         )
     },    
 
     deleteCard: function() {
         var fredRef = new Firebase('https://mutombo-cards.firebaseio.com/' + this.props.cardId);
         
-        if (confirm("Vas a borrar una card, are you sure?")) { 
+        if (confirm('Seguro que esto ya está pagado?')) { 
             fredRef.remove();
         }       
     }
