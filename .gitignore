@@ -3,3 +3,4 @@ app-components/target
 src/*/.tmp
 npm-debug.log
 *~
+.idea

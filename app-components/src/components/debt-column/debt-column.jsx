@@ -56,7 +56,7 @@ var DebtColumn = React.createClass({
                         name={debtList.data.name} 
                         cat={debtList.data.cat} 
                         date={debtList.data.date} />);
-        });        
+        });
 
         return (
             <div>

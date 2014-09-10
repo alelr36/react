@@ -4,34 +4,50 @@ var React = require('react'),
 
 NewCard = React.createClass ({
 
-    getInitialState : function () {
+    getInitialState: function () {
+        this.users = [];
         return {
-            imageSrc: 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png'
+            imageSrc: 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png',
+            users: []
         }
     },
 
-	render: function () {
+    componentWillMount: function () {
+        this.firebaseRefs = new Firebase("https://mutombo-users.firebaseio.com/");
+
+        this.firebaseRefs.on('child_added', function(data) {
+            this.users.push({
+                data: data.val()
+            });
+            this.setState({
+                users: this.users
+            });
+        }.bind(this));
+    },
+
+    render: function () {
+        var users = [];
+        this.state.users.forEach( function(userList) {
+            users.push(<option value={userList.data.username}>{userList.data.displayName}</option>);
+        });
+
 		return (
 			<div className='new-card-container'>
 				<input className='pretty-button' type='button' value='New Card' onClick={this.showNewCard}/>
                 <div className='new-card hidden' id='new-card-box'>
                     <select id='usersSelect' onChange={this.getImage}>
                         <option value='select' selected={true}>Seleccione Usuario</option>
-                        <option value='ale.arce.lr'>Ale Arce</option>
-                        <option value='kavi089'>Javi Baccarelli</option>
-                        <option value='nicolas.siandro'>Nicolas Siandro</option>
-                        <option value='charca'>Maxi Ferreira</option>
-                        <option value='sanozukecze'>Gonza Miranda</option>
-                        <option value='julio.danni'>July</option>
+                        {users}
                     </select>
                     <select id='cat'>
                         <option value='mutombo' selected={true}>Mutombo</option>
                         <option value='mugre'>Mugre</option>
-                        <option value='reunion'>Reunión</option>
+                        <option value='reunion'>Llamada en Reunión</option>
                         <option value='demo'>Demo Exitosa</option>
                         <option value='ingreso'>Ingreso</option>
                         <option value='cumple'>Cumpleaños</option>
                         <option value='despedida'>Despedida</option>
+                        <option value='buildFailure'>Build Failure</option>
                         <option value='otra'>Otra...</option>
                     </select>
                     <img className='default-image' src={this.state.imageSrc} />

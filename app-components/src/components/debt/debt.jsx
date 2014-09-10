@@ -18,7 +18,7 @@ var Debt = React.createClass({
         var sevenDays = Moment(Moment().subtract('days', 7)).format('MM/DD/YYYY');
         var twelveDays = Moment(Moment().subtract('days', 12)).format('MM/DD/YYYY');
         
-        var classes = 'card';              
+        var classes = '';
 
         if(this.props.date < twelveDays) {
             classes += ' red-card';
@@ -30,13 +30,13 @@ var Debt = React.createClass({
         }
 
         return (
-                <div className={classes}>
-                <img className="pic" src={this.getUser()}/>
+                <div className='card'>
+                    <img className={classes +' pic'} src={this.getUser()}/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
                         <p>Razon: {this.props.cat}</p>
-                        <p>Fecha: {this.props.date} </p>
-                        <input type='button' value='Pagau' onClick={this.deleteCard} />
+                        <p>Fecha: {Moment(this.props.date).format('DD-MM-YYYY - HH:mm')} </p>
+                        <input type='button' value='Paid' onClick={this.deleteCard} />
                     </div>
                 </div>
         );
