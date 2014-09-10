@@ -15,42 +15,48 @@ var Debt = React.createClass({
     },
 
     render : function () {
-        var cardDate = Moment(this.props.date).format('M');
-        var now = Moment(Date.now()).format('M');
-        var classes = 'card';
+        var sevenDays = Moment(Moment().subtract(7, 'days')).format('MM/DD/YYYY');
+        var twelveDays = Moment(Moment().subtract(12, 'days')).format('MM/DD/YYYY');
+        
+        var classes = '';
 
-        if(cardDate < now-12) {
-            classes = 'card really-red-card';
+        if(this.props.date < twelveDays) {
+            classes += ' red-card';
         }
         else {
-            if(cardDate < now-7) {
-                classes = 'card red-card';
+            if(this.props.date < sevenDays) {
+                classes += ' yellow-card';
             }
         }
 
         return (
-                <div className={classes}>
-                <img className="pic" src={this.getUser()}/>
+                <div className='card'>
+                    <img className={classes +' pic'} src={this.getUser()}/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
-                        <p>Razon: {this.props.cat}</p>
-                        <p>Fecha: {this.props.date} </p>
-                        <input type='button' value='Pagau' onClick={this.deleteCard} />
+                        <p>{this.props.cat}</p>
+                        <p>Fecha: {Moment(this.props.date).format('DD-MM-YYYY - HH:mm')} </p>
+                        <input className='clouds-flat-button' type='button' value='Paid' onClick={this.deleteCard} />
                     </div>
                 </div>
         );
     }, 
 
     getUser: function () {
+        var userpicture = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+
+        if (!(this.props.user === "")) {
+            userpicture = 'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150';
+        }
         return (
-                'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150' 
+               userpicture  
         )
     },    
 
     deleteCard: function() {
         var fredRef = new Firebase('https://mutombo-cards.firebaseio.com/' + this.props.cardId);
         
-        if (confirm("Vas a borrar una card, are you sure?")) { 
+        if (confirm('Seguro que esto ya está pagado?')) { 
             fredRef.remove();
         }       
     }
