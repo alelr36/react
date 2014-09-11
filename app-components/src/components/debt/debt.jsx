@@ -58,7 +58,20 @@ var Debt = React.createClass({
         
         if (confirm('Seguro que esto ya está pagado?')) { 
             fredRef.remove();
+            this.logDelete();
         }       
+
+    },
+
+    logDelete: function () {
+        firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
+
+        firebaseLogRefs.push({
+            type: "Removing card",
+            entry: "Victima: " + this.props.name,
+            reason: this.props.cat,
+            date: Moment().format('DD/MM/YYYY, HH:mm')
+        });
     }
 });
 
