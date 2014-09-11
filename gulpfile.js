@@ -4,7 +4,12 @@ var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     react = require('gulp-react'),
+    rimraf = require('rimraf'),
     server = require('./server');
+
+gulp.task('rimraf', function (cb) {
+    rimraf.sync('./app-components/target/**/*', cb);
+});
 
 gulp.task('copy', function() {
     gulp.src('./app-components/src/index.html')
@@ -35,4 +40,4 @@ gulp.task('watch', ['build'], function() {
 
 gulp.task('build', ['compile-react', 'browserify', 'copy', 'copy-css']);
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['rimraf','watch']);

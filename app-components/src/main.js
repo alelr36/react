@@ -1,6 +1,6 @@
 /*** @jsx React.DOM */
 
 var React = require('react'),
-	DebtColumn = require('../target/components/debt-column/debt-column');    
+	DebtContainer = require('../target/components/debt-container/debt-container');    
 
-React.renderComponent(<DebtColumn className='debt-column'/>, document.body);
+React.renderComponent(<DebtContainer className='debt-container'/>, document.body);

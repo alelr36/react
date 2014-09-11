@@ -1,0 +1,7 @@
+.log-terminal {
+	position: absolute;
+    background-color: #FCFCFC;
+    border-radius: 3px;
+    border: 1px solid #CACACA;
+    z-index: 400;
+}
