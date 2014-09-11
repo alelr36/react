@@ -84,6 +84,8 @@ NewCard = React.createClass ({
     },
 
 	addCard: function () {
+        var pushed = false;
+
         if (!document.getElementById('usersSelect').selectedIndex == 0) {
     		firebaseRefs = new Firebase('https://mutombo-cards.firebaseio.com/');
 
@@ -93,12 +95,17 @@ NewCard = React.createClass ({
     			cat: document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML,
     			date: Moment().format('MM/DD/YYYY, HH:mm')
     		});
-            this.showNewCard();            
-            this.logAdd();
+            this.showNewCard();         
+            pushed = true;   
         }
         else {
             alert('Solo Chuck Norris puede mutombear a Mutombo!');
         }        
+        
+        if (pushed) {
+            this.logAdd();            
+        }
+
         this.resetForm();
 	},
 
@@ -113,7 +120,7 @@ NewCard = React.createClass ({
 
         firebaseLogRefs.push({
             type: "Adding card",
-            entry: "Card: " + document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
+            entry: "Victima: " + document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
             reason: document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML,
             date: Moment().format('DD/MM/YYYY, HH:mm')
         });
