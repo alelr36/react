@@ -1,9 +1,10 @@
 var React = require('react'),
     Debt = require('../debt/debt'),
     NewCard = require('../new-card/new-card'),
+    LogShow = require('../log-show/log-show'),
     Firebase = require('firebase');
 
-var DebtColumn = React.createClass({
+var DebtContainer = React.createClass({
     getInitialState: function() {
         this.cards = [];
         return {cards: []};
@@ -43,6 +44,7 @@ var DebtColumn = React.createClass({
     hideAllOverlays: function () {
         document.getElementById('background-overlay').classList.add('hidden');
         document.getElementById('new-card-box').classList.add('hidden');
+        document.getElementById('logTerminal').classList.add('hidden');
         this.resetForm();
     },
 
@@ -50,6 +52,8 @@ var DebtColumn = React.createClass({
         document.getElementById('usersSelect').selectedIndex = 0;
         document.getElementById('cat').selectedIndex = 0;
         document.getElementById('selectedImage').src = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+        document.getElementById('otherReason').value = "";
+        document.getElementById('otherReason').classList.add('hidden');
     },
 
     render: function () {
@@ -68,11 +72,11 @@ var DebtColumn = React.createClass({
         return (
             <div>
                 <div id="background-overlay" className='hidden' onClick={this.hideAllOverlays}></div>
-                <NewCard />
-                <div className='debt-column'>{rows}</div>
+                    <NewCard fnReset={this.resetForm}/> <LogShow fnReset={this.resetForm}/>
+                <div className='debt-container'>{rows}</div>
             </div>
         )
     }
 });
 
-module.exports = DebtColumn;
+module.exports = DebtContainer;
