@@ -1,7 +1,32 @@
 .log-terminal {
+	margin-top: 10px;
 	position: absolute;
-    background-color: #FCFCFC;
+    background-color: #000;
     border-radius: 3px;
-    border: 1px solid #CACACA;
+    border: 1px solid #FFF;
     z-index: 400;
+    color: #FFF;
+    width: 800px;
+    max-width: 800px;
+    height: 300px;
+    max-height: 300px;
+    overflow-y: scroll;    
+    -webkit-animation: myfirst 0.2s; /* Chrome, Safari, Opera */
+    animation: myfirst 0.2s;
+}
+
+.logList {
+    list-style-type: none;	
+} 
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+  from {margin-top: 0px;}
+  to {margin-top: 10px;}
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+  from {margin-top: 0px;}
+  to {margin-top: 10px;}
 }

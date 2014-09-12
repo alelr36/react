@@ -50,8 +50,10 @@ var DebtContainer = React.createClass({
 
     resetForm: function () {
         document.getElementById('usersSelect').selectedIndex = 0;
-        document.getElementById('category').selectedIndex = 0;
+        document.getElementById('cat').selectedIndex = 0;
         document.getElementById('selectedImage').src = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+        document.getElementById('otherReason').value = "";
+        document.getElementById('otherReason').classList.add('hidden');
     },
 
     render: function () {
@@ -70,9 +72,7 @@ var DebtContainer = React.createClass({
         return (
             <div>
                 <div id="background-overlay" className='hidden' onClick={this.hideAllOverlays}></div>
-                <div className='buttons-container'>
-                    <NewCard /> <LogShow />
-                </div>
+                    <NewCard fnReset={this.resetForm}/> <LogShow fnReset={this.resetForm}/>
                 <div className='debt-container'>{rows}</div>
             </div>
         )
