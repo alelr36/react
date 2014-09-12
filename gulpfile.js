@@ -4,8 +4,7 @@ var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     react = require('gulp-react'),
-    rimraf = require('rimraf'),
-    server = require('./server');
+    rimraf = require('rimraf');
 
 gulp.task('rimraf', function (cb) {
     rimraf.sync('./app-components/target/**/*', cb);
@@ -34,10 +33,10 @@ gulp.task('compile-react', function () {
         .pipe(gulp.dest('./app-components/target/components'));
 });
 
-gulp.task('watch', ['build'], function() {
-    gulp.watch('./app-components/src/**/*', ['build']);
+gulp.task('watch', ['heroku:build'], function() {
+    gulp.watch('./app-components/src/**/*', ['heroku:build']);
 });
 
-gulp.task('build', ['compile-react', 'browserify', 'copy', 'copy-css']);
+gulp.task('heroku:build', ['compile-react', 'browserify', 'copy', 'copy-css']);
 
 gulp.task('default', ['rimraf','watch']);
