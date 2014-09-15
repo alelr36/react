@@ -20,24 +20,13 @@
   position: absolute;
   background-color: #FFF;
   border-radius: 2px;
-  width: 400px;
+  width: auto;
   height: auto;
+  min-width: 400px;
+  max-width: 448px;
   z-index: 400;
   margin-top: 10px;
-  -webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
-  animation: mysecond 0.2s;  
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes mysecond {
-  from {margin-top: 0px;}
-  to {margin-top: 10px;}
-}
-
-/* Standard syntax */
-@keyframes mysecond {
-  from {margin-top: 0px;}
-  to {margin-top: 10px;}
+    
 }
 
 .default-image {
@@ -50,10 +39,8 @@
 
 .dropdown {
   padding: 3px 32px;
-  display: inline-block;
-  clear: both;
+  margin: 2px;
   -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   text-align: center;
   font-weight: bold;
@@ -61,7 +48,16 @@
   border: none;
   background-color: #2c3e50;
   color: white;
-  overflow-y: hidden;
+}
+
+#usersSelect {
+  float: left;
+  width: 49%;
+}
+
+#cat {
+  float: left;
+  width: 49%;
 }
 
 .other-reason {

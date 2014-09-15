@@ -34,3 +34,20 @@ body {
   	opacity: .7;
   	z-index: 200;
 }
+
+.animate {
+  -webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
+  animation: mysecond 0.2s; 
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mysecond {
+  from {margin-top: 0px;}
+  to {margin-top: 10px;}
+}
+
+/* Standard syntax */
+@keyframes mysecond {
+  from {margin-top: 0px;}
+  to {margin-top: 10px;}
+}
