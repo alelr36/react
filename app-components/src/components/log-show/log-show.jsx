@@ -47,12 +47,16 @@ var React = require('react'),
 	        var background = document.getElementById('background-overlay');
 	        if (!element.className.match('hidden')) {
 	            element.classList.add('hidden');
+	            element.classList.remove('animate');
 	            background.classList.add('hidden');
+	            background.classList.remove('animate');
 	        }
 	        else {
 	            element.classList.remove('hidden');
+	            element.classList.add('animate');
 	            background.classList.remove('hidden');
-	        }      
+	            background.classList.add('animate');
+	        }         
 
 	        {this.props.fnReset()}
 	        this.closeNewCard();  
