@@ -4,10 +4,8 @@
   background: #ecf0f1;
   color:#454545;
   width: 200px;
-  min-width: 200px;
   max-width: 200px;
   height: 368px;
-  min-height: 368px;
   max-height: 368px;  
   margin:0 1rem 1rem;
   -webkit-animation: myDebt 0.2s; /* Chrome, Safari, Opera */
