@@ -110,24 +110,34 @@ NewCard = React.createClass ({
 
 	addCard: function () {
         var pushed = false;
+        var otherCatEmpty = false;
         var category = document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML;
+		var firebaseRefs = new Firebase('https://mutombo-cards.firebaseio.com/');
 
         if (!document.getElementById('usersSelect').selectedIndex == 0) {
-    		firebaseRefs = new Firebase('https://mutombo-cards.firebaseio.com/');
 
-            if(document.getElementById('cat').value === "otra"
-                && document.getElementById('otherReason') !== "") {
-                category = document.getElementById('otherReason').value;
+            if(document.getElementById('cat').value === "otra") {             
+               
+                if(document.getElementById('otherReason').value === "") {
+                    alert('Especifique una razon para mutombear.');
+                    otherCatEmpty = true;
+                }
+                else {
+                    category = document.getElementById('otherReason').value;
+                    otherCatEmpty = false;
+                }
             }
 
-    		firebaseRefs.push({
-    			name: document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
-    			user: document.getElementById('usersSelect').value,
-    			cat: category,
-    			date: Moment().format('MM/DD/YYYY, HH:mm')
-    		});
-            this.showNewCard();         
-            pushed = true;   
+            if(!otherCatEmpty) {
+        		firebaseRefs.push({
+        			name: document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
+        			user: document.getElementById('usersSelect').value,
+        			cat: category,
+        			date: Moment().format('MM/DD/YYYY, HH:mm')
+        		});
+                this.showNewCard();         
+                pushed = true;   
+            }
         }
         else {
             alert('Solo Chuck Norris podria mutombear a Mutombo...');
@@ -137,7 +147,9 @@ NewCard = React.createClass ({
             this.logAdd(category);            
         }
 
-        {this.props.fnReset()}
+        if(!otherCatEmpty) {
+            {this.props.fnReset()}
+        }
 	},    
 
     logAdd: function (category) {

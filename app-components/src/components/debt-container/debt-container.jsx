@@ -56,8 +56,25 @@ var DebtContainer = React.createClass({
         document.getElementById('otherReason').classList.add('hidden');
     },
 
+    sortCards: function () {
+        var array = this.state.cards;
+        
+        array.sort(function(obj1, obj2) {
+            
+            var dateA = obj1.data.date;
+            var dateB = obj2.data.date;
+
+            if (dateA < dateB) 
+              return -1 
+            if (dateA > dateB)
+              return 1
+        });
+    },
+
     render: function () {
         var rows = [];
+
+        this.sortCards();
 
         this.state.cards.forEach( function(debtList) {
             rows.push(<Debt 

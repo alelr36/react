@@ -4,7 +4,8 @@ var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     react = require('gulp-react'),
-    rimraf = require('rimraf');
+    rimraf = require('rimraf'),
+    server = require('./server');
 
 gulp.task('rimraf', function (cb) {
     rimraf.sync('./app-components/target/**/*', cb);
