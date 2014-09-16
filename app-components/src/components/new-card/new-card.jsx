@@ -51,7 +51,7 @@ NewCard = React.createClass ({
                         <option value='otra'>Otra...</option>
                     </select>
                     
-                    <input id='otherReason' className='other-reason hidden' type='text' placeholder='Especificar...' />                        
+                    <input id='otherReason' maxLength='30' className='other-reason hidden' type='text' placeholder='Especificar...' />                        
                     
                     <img id="selectedImage" className='default-image' src={this.state.imageSrc} />
                     <input className='midnight-blue-flat-button' type='button' value='Add' onClick={this.addCard}/>
@@ -92,13 +92,11 @@ NewCard = React.createClass ({
             element.classList.add('hidden');
             element.classList.remove('animate');
             background.classList.add('hidden');
-            background.classList.remove('animate');
         }
         else {
             element.classList.remove('hidden');
             element.classList.add('animate');
             background.classList.remove('hidden');
-            background.classList.add('animate');
         }        
 
         this.closeLogTerminal();
@@ -122,7 +120,7 @@ NewCard = React.createClass ({
 
             if(document.getElementById('cat').value === "otra") {             
                
-                if(document.getElementById('otherReason').value === "") {
+                if(document.getElementById('otherReason').value.trim() === "") {
                     alert('Especifique una razon para mutombear.');
                     otherCatEmpty = true;
                 }

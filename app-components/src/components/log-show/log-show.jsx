@@ -49,13 +49,11 @@ var React = require('react'),
 	            element.classList.add('hidden');
 	            element.classList.remove('animate');
 	            background.classList.add('hidden');
-	            background.classList.remove('animate');
 	        }
 	        else {
 	            element.classList.remove('hidden');
 	            element.classList.add('animate');
 	            background.classList.remove('hidden');
-	            background.classList.add('animate');
 	        }         
 
 	        {this.props.fnReset()}
