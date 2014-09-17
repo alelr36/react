@@ -16,6 +16,11 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('./app-components/target'));
 }); 
 
+gulp.task('copy-img', function() {
+    gulp.src('./app-components/src/img/**/*')
+    .pipe(gulp.dest('./app-components/target'));
+});
+
 gulp.task('copy-css', function() {
     gulp.src('./app-components/src/components/**/*.css')
         .pipe(gulp.dest('./app-components/target/components'));
@@ -38,6 +43,6 @@ gulp.task('watch', ['heroku:build'], function() {
     gulp.watch('./app-components/src/**/*', ['heroku:build']);
 });
 
-gulp.task('heroku:build', ['compile-react', 'browserify', 'copy', 'copy-css']);
+gulp.task('heroku:build', ['compile-react', 'browserify', 'copy', 'copy-css', 'copy-img']);
 
 gulp.task('default', ['rimraf','watch']);
