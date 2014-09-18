@@ -7,7 +7,7 @@ NewCard = React.createClass ({
     getInitialState: function () {
         this.users = [];
         return {
-            imageSrc: '/assets/MutomboWag.png',
+            imageSrc: '/assets/img/MutomboWag.png',
             users: []
         }
     },
