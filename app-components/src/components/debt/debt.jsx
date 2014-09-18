@@ -10,28 +10,37 @@ var Debt = React.createClass({
 
     getDefaultProps : function () {
         return {
-            cat: 'Mutombo'
+            cat: 'Mutombo'  
         }
     },
 
     render : function () {
         var sevenDays = Moment(Moment().subtract(7, 'days')).format('MM/DD/YYYY');
-        var twelveDays = Moment(Moment().subtract(12, 'days')).format('MM/DD/YYYY');
+        var twelveDays = Moment(Moment().subtract(14, 'days')).format('MM/DD/YYYY');
+        var fiveWeeks = Moment(Moment().subtract(5, 'weeks')).format('MM/DD/YYYY');
         
-        var classes = '';
+        var picClasses = '';
+        var highDebt = 'hidden ';
 
-        if(this.props.date < twelveDays) {
-            classes += ' red-card';
+        if (this.props.date < fiveWeeks) {
+            highDebt = 'double-penalty'
+            picClasses += 'red-card';
         }
         else {
-            if(this.props.date < sevenDays) {
-                classes += ' yellow-card';
+            if(this.props.date < twelveDays) {
+                picClasses += 'red-card';
+            }
+            else {
+                if(this.props.date < sevenDays) {
+                    picClasses += 'yellow-card';
+                }
             }
         }
 
         return (
                 <div className='card'>
-                    <img className={classes +' pic'} src={this.getUser()}/>
+                    <img className={picClasses +' pic'} src={this.getUser()}/>
+                    <img className={highDebt} src='/assets/img/x2.png'/>
                     <div className='debt-data'>
                         <p>{this.props.name}</p>
                         <p>{this.props.cat}</p>

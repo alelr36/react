@@ -4,12 +4,7 @@ var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     react = require('gulp-react'),
-    rimraf = require('rimraf'),
     server = require('./server');
-
-gulp.task('rimraf', function (cb) {
-    rimraf.sync('./app-components/target/**/*', cb);
-});
 
 gulp.task('copy', function() {
     gulp.src('./app-components/src/index.html')
@@ -18,7 +13,7 @@ gulp.task('copy', function() {
 
 gulp.task('copy-img', function() {
     gulp.src('./app-components/src/img/**/*')
-    .pipe(gulp.dest('./app-components/target'));
+    .pipe(gulp.dest('./app-components/target/img/'));
 });
 
 gulp.task('copy-css', function() {
@@ -45,4 +40,4 @@ gulp.task('watch', ['heroku:build'], function() {
 
 gulp.task('heroku:build', ['compile-react', 'browserify', 'copy', 'copy-css', 'copy-img']);
 
-gulp.task('default', ['rimraf','watch']);
+gulp.task('default', ['watch']);

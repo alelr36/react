@@ -68,6 +68,13 @@ p {
 }
 
 .red-card {
-  box-shadow: 0 0 35px red; 
   box-shadow: 0 0 50px 15px red;
+}
+
+.double-penalty {
+  width: 200px;
+  height: 115px;
+  position: absolute;
+  margin-left: -88px;
+  margin-top: -24px;
 }
