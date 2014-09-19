@@ -2,6 +2,22 @@ body {
   	background:#222;  
 }
 
+.sad-mutombo {
+  background-image: url('/assets/img/sadMutombo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center; 
+}
+
+.sad-mutombo:after {
+  content: 'No cards? Mutombo be sad :(';
+  font-size: 40px;
+  position: absolute;
+  bottom: 15%;
+  left: 31%;
+  color: #FFF;
+}
+
 .hidden {
     display: none;
 }

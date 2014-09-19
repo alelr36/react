@@ -51,7 +51,7 @@ NewCard = React.createClass ({
                         <option value='otra'>Otra...</option>
                     </select>
                     
-                    <input id='otherReason' maxLength='30' className='other-reason hidden' type='text' placeholder='Especificar...' />                        
+                    <input id='otherReason' maxLength='50' className='other-reason hidden' type='text' placeholder='Especificar...' />                        
                     
                     <img id="selectedImage" className='default-image' src={this.state.imageSrc} />
                     <input className='midnight-blue-flat-button' type='button' value='Add' onClick={this.addCard}/>
