@@ -63,7 +63,7 @@ NewCard = React.createClass ({
     getImage: function (e) {
         if(document.getElementById('usersSelect').selectedIndex === 0) {
             this.setState({
-                    imageSrc: 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png'
+                    imageSrc: '/assets/img/MutomboWag.png'
             });
         }
         else {

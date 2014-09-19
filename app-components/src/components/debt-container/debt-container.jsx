@@ -54,7 +54,7 @@ var DebtContainer = React.createClass({
     resetForm: function () {
         document.getElementById('usersSelect').selectedIndex = 0;
         document.getElementById('cat').selectedIndex = 0;
-        document.getElementById('selectedImage').src = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+        document.getElementById('selectedImage').src = '/assets/img/MutomboWag.png';
         document.getElementById('otherReason').value = "";
         document.getElementById('otherReason').classList.add('hidden');
     },
