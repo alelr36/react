@@ -21,6 +21,8 @@ var DebtContainer = React.createClass({
             this.setState({
                 cards: this.cards
             });
+
+            this.checkForEmptyArray();
         }.bind(this));
 
         this.firebaseRefs.on('child_removed', function(data) {            
@@ -38,7 +40,8 @@ var DebtContainer = React.createClass({
                 cards: lessCards
             });
 
-        }.bind(this));              
+            this.checkForEmptyArray();
+        }.bind(this));  
     },
 
     hideAllOverlays: function () {
@@ -71,20 +74,35 @@ var DebtContainer = React.createClass({
         });
     },
 
+    checkForEmptyArray: function () {
+        if (!this.state.cards.length > 0) {
+            document.body.classList.add('sad-mutombo');
+        }
+        else {
+            if (document.body.className.match('sad-mutombo')) {
+                document.body.classList.remove('sad-mutombo');
+            }
+        }
+    },
+
     render: function () {
         var rows = [];
 
-        this.sortCards();
+        this.checkForEmptyArray();
 
-        this.state.cards.forEach( function(debtList) {
-            rows.push(<Debt 
-                        className="card" 
-                        cardId={debtList.id} 
-                        user={debtList.data.user} 
-                        name={debtList.data.name} 
-                        cat={debtList.data.cat} 
-                        date={debtList.data.date} />);
-        });
+        if (this.state.cards.length > 0) {
+            this.sortCards();        
+
+            this.state.cards.forEach( function(debtList) {
+                rows.push(<Debt 
+                            className="card" 
+                            cardId={debtList.id} 
+                            user={debtList.data.user} 
+                            name={debtList.data.name} 
+                            cat={debtList.data.cat} 
+                            date={debtList.data.date} />);
+            });
+        }
 
         return (
             <div>
