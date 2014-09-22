@@ -12,7 +12,7 @@ var DebtContainer = React.createClass({
 
     componentWillMount: function() {
         this.firebaseRefs = new Firebase("https://mutombo-cards.firebaseio.com/");
-        
+              
         this.firebaseRefs.on('child_added', function(data) {
             this.cards.push({
                 id: data.name(),
@@ -21,8 +21,7 @@ var DebtContainer = React.createClass({
             this.setState({
                 cards: this.cards
             });
-
-            this.checkForEmptyArray();
+            
         }.bind(this));
 
         this.firebaseRefs.on('child_removed', function(data) {            
@@ -39,9 +38,9 @@ var DebtContainer = React.createClass({
             this.setState({
                 cards: lessCards
             });
+               
+        }.bind(this));
 
-            this.checkForEmptyArray();
-        }.bind(this));  
     },
 
     hideAllOverlays: function () {
@@ -74,21 +73,29 @@ var DebtContainer = React.createClass({
         });
     },
 
-    checkForEmptyArray: function () {
-        if (!this.state.cards.length > 0) {
-            document.body.classList.add('sad-mutombo');
-        }
-        else {
-            if (document.body.className.match('sad-mutombo')) {
-                document.body.classList.remove('sad-mutombo');
+    checkForEmptyData: function () {
+        this.firebaseRefs = new Firebase("https://mutombo-cards.firebaseio.com/");
+
+        this.firebaseRefs.on('value', function(data) {
+            if (data) {
+                document.body.classList.remove('loading');        
+            }     
+        }.bind(this));     
+
+            if (!this.state.cards.length > 0) {
+                document.body.classList.add('sad-mutombo');      
+            }      
+            else {
+                if (document.body.className.match('sad-mutombo')) {
+                    document.body.classList.remove('sad-mutombo');
+                }
             }
-        }
     },
 
     render: function () {
         var rows = [];
 
-        this.checkForEmptyArray();
+        this.checkForEmptyData(); 
 
         if (this.state.cards.length > 0) {
             this.sortCards();        
