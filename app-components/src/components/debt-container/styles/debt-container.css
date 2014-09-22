@@ -9,13 +9,11 @@ body {
   background-position: center center; 
 }
 
-.sad-mutombo:after {
-  content: 'No cards? Mutombo be sad :(';
-  font-size: 40px;
-  position: absolute;
-  bottom: 15%;
-  left: 31%;
-  color: #FFF;
+.loading {
+  background-image: url('/assets/img/loading10.gif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
 .hidden {
