@@ -56,6 +56,7 @@ var DebtContainer = React.createClass({
         document.getElementById('selectedImage').src = '/assets/img/MutomboWag.png';
         document.getElementById('otherReason').value = "";
         document.getElementById('otherReason').classList.add('hidden');
+        document.getElementById('logTerminal').scrollTop = 0;
     },
 
     sortCards: function () {
