@@ -15,8 +15,9 @@ var Debt = React.createClass({
     },
 
     render : function () {
-        var sevenDays = Moment(Moment().subtract(7, 'days')).format('MM/DD/YYYY');
-        var twelveDays = Moment(Moment().subtract(14, 'days')).format('MM/DD/YYYY');
+        var twoWeeks = Moment(Moment().subtract(2, 'weeks')).format('MM/DD/YYYY');
+        var threeWeeks = Moment(Moment().subtract(3, 'weeks')).format('MM/DD/YYYY');
+        var fourWeeks = Moment(Moment().subtract(4, 'weeks')).format('MM/DD/YYYY');
         var fiveWeeks = Moment(Moment().subtract(5, 'weeks')).format('MM/DD/YYYY');
         
         var picClasses = '';
@@ -27,12 +28,17 @@ var Debt = React.createClass({
             picClasses += 'red-card';
         }
         else {
-            if(this.props.date < twelveDays) {
-                picClasses += 'red-card';
+            if(this.props.date < fourWeeks) {
+                picClasses += 'red-glowing-card';
             }
             else {
-                if(this.props.date < sevenDays) {
-                    picClasses += 'yellow-card';
+                if(this.props.date < threeWeeks) {
+                    picClasses += 'red-card';
+                }
+                else {
+                    if(this.props.date < twoWeeks) {
+                        picClasses += 'mild--red-card';
+                    }
                 }
             }
         }
@@ -52,7 +58,7 @@ var Debt = React.createClass({
     }, 
 
     getUser: function () {
-        var userpicture = 'http://notsportscenter.com/wp-content/uploads/2014/03/MutomboWag.png';
+        var userpicture = '/assets/img/MutomboWag.png';
 
         if (!(this.props.user === "")) {
             userpicture = 'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150';

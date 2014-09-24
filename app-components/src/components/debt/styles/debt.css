@@ -63,7 +63,7 @@ p {
   outline: none;
 }
 
-.yellow-card {
+.mild--red-card {
   box-shadow: 0 0 35px red;
 }
 
@@ -77,4 +77,21 @@ p {
   position: absolute;
   margin-left: -88px;
   margin-top: -24px;
+}
+
+.red-glowing-card {
+  -webkit-animation:redGlow ease-in-out 2s infinite;
+    animation:redGlow ease-in-out 2s infinite;
+}
+
+@-webkit-keyframes redGlow {
+  0% {box-shadow: 0 0 50px 15px red;}
+  50% {box-shadow: 0 0 50px 30px red;}
+  100% {box-shadow: 0 0 50px 15px red;}
+}
+
+@keyframes redGlow {
+  0% {box-shadow: 0 0 50px 15px red;}
+  50% {box-shadow: 0 0 50px 30px red;}
+  100% {box-shadow: 0 0 50px 15px red;}
 }
