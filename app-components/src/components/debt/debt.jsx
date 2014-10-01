@@ -91,7 +91,7 @@ var Debt = React.createClass({
             type: "Removing card",
             entry: "Victima: " + this.props.name,
             reason: this.props.cat,
-            date: Moment().format('DD/MM/YYYY, HH:mm')
+            date: Moment().zone('-03:00').format('DD/MM/YYYY, HH:mm')
         });
     }
 });

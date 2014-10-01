@@ -135,7 +135,7 @@ NewCard = React.createClass ({
         			name: document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
         			user: document.getElementById('usersSelect').value,
         			cat: category,
-        			date: Moment().format('MM/DD/YYYY, HH:mm')
+        			date: Moment().zone('-03:00').format('DD/MM/YYYY, HH:mm')
         		});
                 this.showNewCard();         
                 pushed = true;   
@@ -161,7 +161,7 @@ NewCard = React.createClass ({
             type: "Adding card",
             entry: "Victima: " + document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
             reason: category,
-            date: Moment().format('DD/MM/YYYY, HH:mm')
+            date: Moment().zone('-03:00').format('DD/MM/YYYY, HH:mm')
         });
     }
 });
