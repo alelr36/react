@@ -60,7 +60,7 @@ NewCard = React.createClass ({
 		)
 	},
 
-    getImage: function (e) {
+    getImage: function () {
         if(document.getElementById('usersSelect').selectedIndex === 0) {
             this.setState({
                     imageSrc: '/assets/img/MutomboWag.png'
@@ -75,7 +75,7 @@ NewCard = React.createClass ({
 
     showOtherInput: function () {
         var select = document.getElementById('cat');
-        var inputDiv = document.getElementById('otherReason')
+        var inputDiv = document.getElementById('otherReason');
         
         if(select.value === "otra") {
             inputDiv.classList.remove('hidden');
@@ -143,8 +143,8 @@ NewCard = React.createClass ({
         }
         else {
             alert('Solo Chuck Norris podria mutombear a Mutombo...');
-        }        
-        
+        }
+
         if (pushed) {
             this.logAdd(category);            
         }
@@ -155,7 +155,7 @@ NewCard = React.createClass ({
 	},    
 
     logAdd: function (category) {
-        firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
+        var firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
 
         firebaseLogRefs.push({
             type: "Adding card",
