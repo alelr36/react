@@ -3,8 +3,7 @@
 var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
-    react = require('gulp-react'),
-    server = require('./server');
+    react = require('gulp-react');
 
 gulp.task('copy', function() {
     gulp.src('./app-components/src/index.html')
