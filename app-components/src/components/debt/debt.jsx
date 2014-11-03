@@ -19,7 +19,9 @@ var Debt = React.createClass({
         var threeWeeks = Moment(Moment().subtract(3, 'weeks')).format('MM/DD/YYYY');
         var fourWeeks = Moment(Moment().subtract(4, 'weeks')).format('MM/DD/YYYY');
         var fiveWeeks = Moment(Moment().subtract(5, 'weeks')).format('MM/DD/YYYY');
-        var date = this.props.date;
+
+        date = this.props.date;
+        
         var cx = React.addons.classSet;
 
         var picClasses = cx({
@@ -34,6 +36,7 @@ var Debt = React.createClass({
 
     getHiddenSealClasses: function () {
         var fiveWeeks = Moment(Moment().subtract(5, 'weeks')).format('MM/DD/YYYY');
+        var highDebt = 'hidden ';
         var cx = React.addons.classSet;
 
         var cardClasses = cx({
