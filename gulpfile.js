@@ -1,5 +1,3 @@
-'use strict';
-
 var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),

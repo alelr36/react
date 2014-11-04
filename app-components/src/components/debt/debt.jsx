@@ -22,30 +22,25 @@ var Debt = React.createClass({
         var date = this.props.date;
         var cx = React.addons.classSet;
 
-        var picClasses = cx({
+        return cx({
             'pic': true,
             'mild--red-card': date < twoWeeks && date > threeWeeks,
             'red-card': (date < threeWeeks && date > fourWeeks) || date < fiveWeeks,
-            'red-glowing-card': date < fourWeeks && date > fiveWeeks        
+            'red-glowing-card': date < fourWeeks && date > fiveWeeks
         });
-
-        return picClasses;         
     },
 
     getHiddenSealClasses: function () {
         var fiveWeeks = Moment(Moment().subtract(5, 'weeks')).format('MM/DD/YYYY');
         var cx = React.addons.classSet;
 
-        var cardClasses = cx({
+        return cx({
             'hidden': this.props.date > fiveWeeks,
             'double-penalty': this.props.date < fiveWeeks
         });
-
-        return cardClasses;
     },
 
-    render : function () {     
-
+    render : function () {
         return (
                 <div className='card'>
                     <img className={this.getPicClasses()} src={this.getUser()}/>
