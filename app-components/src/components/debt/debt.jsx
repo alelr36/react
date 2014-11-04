@@ -49,7 +49,7 @@ var Debt = React.createClass({
                         <p>{this.props.name}</p>
                         <p>{this.props.cat}</p>
                         <p>Fecha: {Moment(this.props.date).format('DD-MM-YYYY - HH:mm')} </p>
-                        <input className='clouds-flat-button' type='button' value='Paid' onClick={this.deleteCard} />
+                        <input className='clouds-flat-button' type='button' value='Pagado' onClick={this.deleteCard} />
                     </div>
                 </div>
         );

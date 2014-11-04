@@ -3,17 +3,11 @@ body {
 }
 
 .sad-mutombo {
-  background-image: url('/assets/img/sadMutombo.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center; 
+	background: url('/assets/img/sadMutombo.jpg') no-repeat fixed center center #222;
 }
 
 .loading {
-  background-image: url('/assets/img/loading10.gif');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
+	background: url('/assets/img/loading10.gif') no-repeat fixed center center #222;
 }
 
 .hidden {
@@ -50,18 +44,18 @@ body {
 }
 
 .animate {
-  -webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
-  animation: mysecond 0.2s; 
+  	-webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
+  	animation: mysecond 0.2s;
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mysecond {
-  from {margin-top: 0px;}
-  to {margin-top: 10px;}
+  	from {margin-top: 0px;}
+  	to {margin-top: 10px;}
 }
 
 /* Standard syntax */
 @keyframes mysecond {
-  from {margin-top: 0px;}
-  to {margin-top: 10px;}
+  	from {margin-top: 0px;}
+  	to {margin-top: 10px;}
 }
