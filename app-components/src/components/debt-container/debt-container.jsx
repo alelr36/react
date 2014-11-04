@@ -12,7 +12,7 @@ var DebtContainer = React.createClass({
 
     componentWillMount: function() {
         this.firebaseRefs = new Firebase("https://mutombo-cards.firebaseio.com/");
-              
+
         this.firebaseRefs.on('child_added', function(data) {
             this.cards.push({
                 id: data.name(),
@@ -21,10 +21,10 @@ var DebtContainer = React.createClass({
             this.setState({
                 cards: this.cards
             });
-            
+
         }.bind(this));
 
-        this.firebaseRefs.on('child_removed', function(data) {            
+        this.firebaseRefs.on('child_removed', function(data) {
             var lessCards = [];
 
             for (var i = 0; i < this.cards.length ; i++) {
@@ -38,7 +38,7 @@ var DebtContainer = React.createClass({
             this.setState({
                 cards: lessCards
             });
-               
+
         }.bind(this));
 
     },
@@ -79,24 +79,18 @@ var DebtContainer = React.createClass({
 
         this.firebaseRefs.on('value', function(data) {
             if (data) {
-                document.body.classList.remove('loading');        
-            }     
-        }.bind(this));     
-
-            if (!this.state.cards.length > 0) {
-                document.body.classList.add('sad-mutombo');      
-            }      
-            else {
-                if (document.body.className.match('sad-mutombo')) {
-                    document.body.classList.remove('sad-mutombo');
-                }
+                document.body.classList.remove('loading');
             }
+            if (!data.val()) {
+                document.body.classList.add('sad-mutombo');
+            } else {
+                document.body.classList.remove('sad-mutombo');
+            }
+        }.bind(this));
     },
 
     render: function () {
         var rows = [];
-
-        this.checkForEmptyData(); 
 
         if (this.state.cards.length > 0) {
             this.sortCards();        
@@ -119,6 +113,10 @@ var DebtContainer = React.createClass({
                 <div className='debt-container'>{rows}</div>
             </div>
         )
+    },
+
+    componentDidMount: function() {
+        this.checkForEmptyData();
     }
 });
 
