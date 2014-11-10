@@ -5,6 +5,7 @@
   "description": "This is a PoC for JS technologies.",
   "authors": "Ale Arce - Javier Baccarelli",
   "dependencies": {
+    "basic-auth": "^1.0.0",
     "express": "latest",
     "firebase": "latest",
     "gulp": "latest",
