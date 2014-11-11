@@ -1,5 +1,6 @@
 var React = require('react/addons'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    Firebase = require('firebase');
 
 var Debt = React.createClass({
     propTypes:{
@@ -67,20 +68,26 @@ var Debt = React.createClass({
     },    
 
     deleteCard: function() {
-        var fredRef = new Firebase('https://mutombo-cards.firebaseio.com/' + this.props.cardId);
-        
-        if (confirm('Seguro que esto ya está pagado?')) { 
-            fredRef.remove();
-            this.logDelete();
-        }       
+        var ref = new Firebase('https://mutombo-cards.firebaseio.com/' + this.props.cardId);
 
+        var pr =  prompt('Razon para borrar la card? (Pagado, Error en los datos, etc)', 'Pagado');
+
+        if (pr) {
+            ref.remove();
+            this.logDelete(pr);
+        }
     },
 
-    logDelete: function () {
-        firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
+    logDelete: function (pr) {
+        var firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
+
+        if (pr.length > 30) {
+            pr = pr.substring(0, 20);
+            pr += "...";
+        }
 
         firebaseLogRefs.push({
-            type: "Removing card",
+            type: "Removing card (" + pr + ")",
             entry: "Victima: " + this.props.name,
             reason: this.props.cat,
             date: Moment().zone('-03:00').format('DD/MM/YYYY, HH:mm')
