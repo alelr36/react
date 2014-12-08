@@ -1,7 +1,7 @@
 {
   "type": "git",
   "url": "https://github.com/alelr36/react.git",
-  "name": "Mutombo",
+  "name": "PanchApp",
   "description": "This is a PoC for JS technologies.",
   "authors": "Ale Arce - Javier Baccarelli",
   "dependencies": {

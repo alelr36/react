@@ -7,7 +7,7 @@ NewCard = React.createClass ({
     getInitialState: function () {
         this.users = [];
         return {
-            imageSrc: '/assets/img/MutomboWag.png',
+            imageSrc: '/assets/img/panched.gif',
             users: []
         }
     },
@@ -39,8 +39,8 @@ NewCard = React.createClass ({
                         <option value='select'>Seleccione Usuario</option>
                         {users}
                     </select>
-                    <select id='cat' className='dropdown' defaultValue='mutombo' onChange={this.showOtherInput}>
-                        <option value='mutombo'>Mutombo</option>
+                    <select id='cat' className='dropdown' defaultValue='panched' onChange={this.showOtherInput}>
+                        <option value='panched'>Panched</option>
                         <option value='mugre'>Mugre</option>
                         <option value='reunion'>Llamada en Reunión</option> 
                         <option value='demo'>Demo Exitosa</option>
@@ -63,7 +63,7 @@ NewCard = React.createClass ({
     getImage: function () {
         if(document.getElementById('usersSelect').selectedIndex === 0) {
             this.setState({
-                    imageSrc: '/assets/img/MutomboWag.png'
+                    imageSrc: '/assets/img/panched.gif'
             });
         }
         else {
@@ -142,7 +142,7 @@ NewCard = React.createClass ({
             }
         }
         else {
-            alert('Solo Chuck Norris podria mutombear a Mutombo...');
+            alert('Ya fue suficientemente pancheada la pobre chica...');
         }
 
         if (pushed) {

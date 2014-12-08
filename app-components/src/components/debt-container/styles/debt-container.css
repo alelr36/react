@@ -2,8 +2,8 @@ body {
   	background:#222;  
 }
 
-.sad-mutombo {
-	background: url('/assets/img/sadMutombo.jpg') no-repeat fixed center center #222;
+.no-sausage {
+	background: url('/assets/img/noSausage.png') no-repeat fixed center center #222;
 }
 
 .loading {

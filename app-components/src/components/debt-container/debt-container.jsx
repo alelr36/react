@@ -53,7 +53,7 @@ var DebtContainer = React.createClass({
     resetForm: function () {
         document.getElementById('usersSelect').selectedIndex = 0;
         document.getElementById('cat').selectedIndex = 0;
-        document.getElementById('selectedImage').src = '/assets/img/MutomboWag.png';
+        document.getElementById('selectedImage').src = '/assets/img/panched.gif';
         document.getElementById('otherReason').value = "";
         document.getElementById('otherReason').classList.add('hidden');
         document.getElementById('logTerminal').scrollTop = 0;
@@ -82,9 +82,9 @@ var DebtContainer = React.createClass({
                 document.body.classList.remove('loading');
             }
             if (!data.val()) {
-                document.body.classList.add('sad-mutombo');
+                document.body.classList.add('no-sausage');
             } else {
-                document.body.classList.remove('sad-mutombo');
+                document.body.classList.remove('no-sausage');
             }
         }.bind(this));
     },

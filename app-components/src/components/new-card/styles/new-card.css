@@ -30,7 +30,7 @@
 }
 
 .default-image {
-    width: 160px;
+    width: auto;
     height: 160px;
     display: block;
     clear: both;

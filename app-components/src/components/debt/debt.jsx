@@ -9,12 +9,6 @@ var Debt = React.createClass({
         user: React.PropTypes.string
     },
 
-    getDefaultProps : function () {
-        return {
-            cat: 'Mutombo'  
-        }
-    },
-
     getPicClasses: function () {
         var twoWeeks = Moment(Moment().subtract(2, 'weeks')).format('MM/DD/YYYY');
         var threeWeeks = Moment(Moment().subtract(3, 'weeks')).format('MM/DD/YYYY');
@@ -57,7 +51,7 @@ var Debt = React.createClass({
     }, 
 
     getUser: function () {
-        var userpicture = '/assets/img/MutomboWag.png';
+        var userpicture = '/assets/img/panched.gif';
 
         if (!(this.props.user === "")) {
             userpicture = 'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150';
