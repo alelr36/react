@@ -7,14 +7,15 @@ LogShow = React.createClass ({
 		this.entries = [];
 			return {
 				entries: []
-			}
+			};
 	},
 
 	componentWillMount: function () {
-		this.firebaseRefs = new Firebase("https://mutombo-log.firebaseio.com/");
+		var firebaseRefs = new Firebase("http://mutombo-log.firebaseio.com/");
 
-		this.firebaseRefs.on('child_added', function(data) {
+		firebaseRefs.on('child_added', function(data) {
 			this.entries.push({
+				id: data.key(),
 				data: data.val()
 			});
 			this.setState({
@@ -24,22 +25,16 @@ LogShow = React.createClass ({
 	},
 
 	render: function () {
-		var items = [];
-
-		this.state.entries.forEach( function(logList) {
-			items.push(<li>{logList.data.date} - | - {logList.data.entry} - | - Razon:  {logList.data.reason} - | - Movimiento:  {logList.data.type} </li>);
-		});
-
 		return (
 			<div className='button-container'>
 				<input className='pretty-button' type='button' value='Logs' onClick={this.showLogTerminal}/>
 				<div className='log-terminal hidden' id='logTerminal'>
 					<ul className="logList">
-						{items}
+						{this.renderLogs()}
 					</ul>
 				</div>
 			</div>
-		)
+		);
 	},
 
 	showLogTerminal: function () {
@@ -49,15 +44,24 @@ LogShow = React.createClass ({
 			element.classList.add('hidden');
 			element.classList.remove('animate');
 			background.classList.add('hidden');
-		}
-		else {
+		} else {
 			element.classList.remove('hidden');
 			element.classList.add('animate');
 			background.classList.remove('hidden');
 		}
 
-		{this.props.fnReset()}
+		this.props.fnReset();
 		this.closeNewCard();
+	},
+
+	renderLogs: function () {
+		var items = [];
+
+		this.state.entries.forEach( function(logList) {
+			items.push(<li key={logList.id}>  {logList.data.date} - | - {logList.data.entry} - | - Razon:  {logList.data.reason} - | - Movimiento:  {logList.data.type} </li>);
+		});
+
+		return items.reverse();
 	},
 
 	closeNewCard: function () {

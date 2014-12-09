@@ -4,18 +4,20 @@ var React = require('react'),
     LogShow = require('../log-show/log-show'),
     Firebase = require('firebase');
 
+var firebaseRef = new Firebase("http://mutombo-cards.firebaseio.com/");
+
 var DebtContainer = React.createClass({
+
     getInitialState: function() {
         this.cards = [];
         return {cards: []};
     },
 
     componentWillMount: function() {
-        this.firebaseRefs = new Firebase("https://mutombo-cards.firebaseio.com/");
 
-        this.firebaseRefs.on('child_added', function(data) {
+        firebaseRef.on('child_added', function(data) {
             this.cards.push({
-                id: data.name(),
+                id: data.key(),
                 data: data.val()
             });
             this.setState({
@@ -24,16 +26,16 @@ var DebtContainer = React.createClass({
 
         }.bind(this));
 
-        this.firebaseRefs.on('child_removed', function(data) {
+        firebaseRef.on('child_removed', function(data) {
             var lessCards = [];
 
             for (var i = 0; i < this.cards.length ; i++) {
-                if (this.cards[i].id !== data.name()) {
+                if (this.cards[i].id !== data.key()) {
                     lessCards.push(this.cards[i]);
                 }
             }
 
-            this.cards = lessCards
+            this.cards = lessCards;
 
             this.setState({
                 cards: lessCards
@@ -41,6 +43,55 @@ var DebtContainer = React.createClass({
 
         }.bind(this));
 
+    },
+
+    render: function () {
+        return (
+            <div>
+                <div id="background-overlay" className='hidden' onClick={this.hideAllOverlays}></div>
+                    <NewCard fnReset={this.resetForm}/>
+                    <LogShow fnReset={this.resetForm}/>
+                <div className='debt-container'>
+                    {this.renderRows()}
+                </div>
+            </div>
+        );
+    },
+
+    renderRows: function () {
+        var rows = [];
+
+        if (this.state.cards.length > 0) {
+            this.sortCards();
+
+            this.state.cards.forEach( function(debtList) {
+                rows.push(<Debt
+                    key={debtList.id}
+                    className="card"
+                    cardId={debtList.id}
+                    user={debtList.data.user}
+                    name={debtList.data.name}
+                    cat={debtList.data.cat}
+                    date={debtList.data.date} />);
+            });
+        }
+
+        return rows;
+    },
+
+    sortCards: function () {
+        var array = this.state.cards;
+
+        array.sort(function(obj1, obj2) {
+            var dateA = obj1.data.date;
+            var dateB = obj2.data.date;
+
+            if (dateA < dateB){
+                return -1;
+            } else {
+                return 1;
+            }
+        });
     },
 
     hideAllOverlays: function () {
@@ -59,25 +110,13 @@ var DebtContainer = React.createClass({
         document.getElementById('logTerminal').scrollTop = 0;
     },
 
-    sortCards: function () {
-        var array = this.state.cards;
-        
-        array.sort(function(obj1, obj2) {
-            
-            var dateA = obj1.data.date;
-            var dateB = obj2.data.date;
-
-            if (dateA < dateB) 
-              return -1 
-            if (dateA > dateB)
-              return 1
-        });
+    componentDidMount: function() {
+        this.checkForEmptyData();
     },
 
     checkForEmptyData: function () {
-        this.firebaseRefs = new Firebase("https://mutombo-cards.firebaseio.com/");
 
-        this.firebaseRefs.on('value', function(data) {
+        firebaseRef.on('value', function(data) {
             if (data) {
                 document.body.classList.remove('loading');
             }
@@ -87,36 +126,6 @@ var DebtContainer = React.createClass({
                 document.body.classList.remove('no-sausage');
             }
         }.bind(this));
-    },
-
-    render: function () {
-        var rows = [];
-
-        if (this.state.cards.length > 0) {
-            this.sortCards();        
-
-            this.state.cards.forEach( function(debtList) {
-                rows.push(<Debt 
-                            className="card" 
-                            cardId={debtList.id} 
-                            user={debtList.data.user} 
-                            name={debtList.data.name} 
-                            cat={debtList.data.cat} 
-                            date={debtList.data.date} />);
-            });
-        }
-
-        return (
-            <div>
-                <div id="background-overlay" className='hidden' onClick={this.hideAllOverlays}></div>
-                    <NewCard fnReset={this.resetForm}/> <LogShow fnReset={this.resetForm}/>
-                <div className='debt-container'>{rows}</div>
-            </div>
-        )
-    },
-
-    componentDidMount: function() {
-        this.checkForEmptyData();
     }
 });
 

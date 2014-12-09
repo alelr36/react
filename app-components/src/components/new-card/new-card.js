@@ -9,47 +9,34 @@ NewCard = React.createClass ({
         return {
             imageSrc: '/assets/img/panched.gif',
             users: []
-        }
+        };
     },
 
     componentWillMount: function () {
-        this.firebaseRefs = new Firebase("https://mutombo-users.firebaseio.com/");
+        var firebaseUsersRef = new Firebase("http://mutombo-users.firebaseio.com/");
 
-        this.firebaseRefs.on('child_added', function(data) {
+        firebaseUsersRef.on('child_added', function(data) {
             this.users.push({
+                id: data.key(),
                 data: data.val()
             });
+
             this.setState({
                 users: this.users
             });
+
         }.bind(this));
     },
 
     render: function () {
-        var users = [];
-        this.state.users.forEach( function(userList) {
-            users.push(<option value={userList.data.username}>{userList.data.displayName}</option>);
-        });
-
-		return (
+        return (
 			<div className='button-container'>
 				<input className='pretty-button' type='button' value='Nueva Card' onClick={this.showNewCard}/>
                 <div className='new-card hidden' id='new-card-box'>
-                    <select id='usersSelect' className='dropdown' defaultValue='select' onChange={this.getImage}>
-                        <option value='select'>Seleccione Usuario</option>
-                        {users}
-                    </select>
-                    <select id='cat' className='dropdown' defaultValue='panched' onChange={this.showOtherInput}>
-                        <option value='panched'>Panched</option>
-                        <option value='mugre'>Mugre</option>
-                        <option value='reunion'>Llamada en Reunión</option> 
-                        <option value='demo'>Demo Exitosa</option>
-                        <option value='ingreso'>Ingreso</option>
-                        <option value='cumple'>Cumpleaños</option>
-                        <option value='despedida'>Despedida</option>
-                        <option value='buildFailure'>Build Failure</option>
-                        <option value='otra'>Otra...</option>
-                    </select>
+
+                    {this.renderUsersSelect()}
+
+                    {this.renderCatSelect()}
                     
                     <input id='otherReason' maxLength='50' className='other-reason hidden' type='text' placeholder='Especificar...' />                        
                     
@@ -57,16 +44,49 @@ NewCard = React.createClass ({
                     <input className='midnight-blue-flat-button' type='button' value='Agregar' onClick={this.addCard}/>
                 </div>
             </div>
-		)
+		);
 	},
+
+    renderUsersSelect: function () {
+        return (
+            <select id='usersSelect' className='dropdown' defaultValue='select' onChange={this.getImage}>
+                <option value='select'>Usuarios</option>
+                {this.renderUsers()}
+            </select>
+        );
+    },
+
+    renderUsers: function () {
+        var users = [];
+        this.state.users.forEach(function (user) {
+            users.push(<option key={user.id} value={user.data.username}>{user.data.displayName}</option>);
+        });
+
+        return users;
+    },
+
+    renderCatSelect: function () {
+        return (
+            <select id='cat' className='dropdown' defaultValue='panched' onChange={this.showOtherInput}>
+                <option value='panched'>Panched</option>
+                <option value='mugre'>Mugre</option>
+                <option value='reunion'>Llamada en Reunión</option>
+                <option value='demo'>Demo Exitosa</option>
+                <option value='ingreso'>Ingreso</option>
+                <option value='cumple'>Cumpleaños</option>
+                <option value='despedida'>Despedida</option>
+                <option value='buildFailure'>Build Failure</option>
+                <option value='otra'>Otra...</option>
+            </select>
+      );
+    },
 
     getImage: function () {
         if(document.getElementById('usersSelect').selectedIndex === 0) {
             this.setState({
                     imageSrc: '/assets/img/panched.gif'
             });
-        }
-        else {
+        } else {
             this.setState({
                     imageSrc: 'https://graph.facebook.com/' + document.getElementById('usersSelect').value + '/picture?width=150&height=150'
             });
@@ -79,21 +99,19 @@ NewCard = React.createClass ({
         
         if(select.value === "otra") {
             inputDiv.classList.remove('hidden');
-        }
-        else    {
+        } else {
             inputDiv.classList.add('hidden');        
         }    
     },
 
-    showNewCard: function (e) {
+    showNewCard: function () {
         var element = document.getElementById('new-card-box');
         var background = document.getElementById('background-overlay');
         if (!element.className.match('hidden')) {
             element.classList.add('hidden');
             element.classList.remove('animate');
             background.classList.add('hidden');
-        }
-        else {
+        } else {
             element.classList.remove('hidden');
             element.classList.add('animate');
             background.classList.remove('hidden');
@@ -114,24 +132,23 @@ NewCard = React.createClass ({
         var pushed = false;
         var otherCatEmpty = false;
         var category = document.getElementById('cat').options[document.getElementById('cat').selectedIndex].innerHTML;
-		var firebaseRefs = new Firebase('https://mutombo-cards.firebaseio.com/');
+		var firebaseCardsRef = new Firebase('http://mutombo-cards.firebaseio.com/');
 
-        if (!document.getElementById('usersSelect').selectedIndex == 0) {
+        if (document.getElementById('usersSelect').selectedIndex !== 0) {
 
             if(document.getElementById('cat').value === "otra") {             
                
                 if(document.getElementById('otherReason').value.trim() === "") {
-                    alert('Especifique una razon para mutombear.');
+                    alert('Especifique una razon para panchear.');
                     otherCatEmpty = true;
-                }
-                else {
+                } else {
                     category = document.getElementById('otherReason').value;
                     otherCatEmpty = false;
                 }
             }
 
             if(!otherCatEmpty) {
-        		firebaseRefs.push({
+                firebaseCardsRef.push({
         			name: document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
         			user: document.getElementById('usersSelect').value,
         			cat: category,
@@ -140,8 +157,7 @@ NewCard = React.createClass ({
                 this.showNewCard();         
                 pushed = true;   
             }
-        }
-        else {
+        } else {
             alert('Ya fue suficientemente pancheada la pobre chica...');
         }
 
@@ -150,14 +166,14 @@ NewCard = React.createClass ({
         }
 
         if(!otherCatEmpty) {
-            {this.props.fnReset()}
+            this.props.fnReset();
         }
 	},    
 
     logAdd: function (category) {
-        var firebaseLogRefs = new Firebase('https://mutombo-log.firebaseio.com/');
+        var firebaseLogRef = new Firebase('http://mutombo-log.firebaseio.com/');
 
-        firebaseLogRefs.push({
+        firebaseLogRef.push({
             type: "Adding card",
             entry: "Victima: " + document.getElementById('usersSelect').options[document.getElementById('usersSelect').selectedIndex].innerHTML,
             reason: category,
