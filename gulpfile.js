@@ -1,7 +1,8 @@
 var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
-    react = require('gulp-react');
+    react = require('gulp-react'),
+    jshint = require("gulp-jshint");
 
 gulp.task('copy', function() {
     gulp.src('./app-components/src/index.html')
@@ -26,15 +27,23 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('compile-react', function () {
-    return gulp.src('./app-components/src/components/**/*.jsx')
+    return gulp.src('./app-components/src/components/**/*.js')
         .pipe(react())
         .pipe(gulp.dest('./app-components/target/components'));
+});
+
+gulp.task("lint", function() {
+    return gulp.src("./app-components/src/components/**/*.js")
+        .pipe(react())
+        .pipe(jshint())
+        .pipe(jshint.reporter("jshint-stylish", {verbose: true}))
+        .pipe(jshint.reporter("fail"));
 });
 
 gulp.task('watch', ['heroku:build'], function() {
     gulp.watch('./app-components/src/**/*', ['heroku:build']);
 });
 
-gulp.task('heroku:build', ['compile-react', 'browserify', 'copy', 'copy-css', 'copy-img']);
+gulp.task('heroku:build', ['compile-react', 'browserify', 'lint', 'copy', 'copy-css', 'copy-img']);
 
 gulp.task('default', ['watch']);

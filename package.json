@@ -2,22 +2,21 @@
   "type": "git",
   "url": "https://github.com/alelr36/react.git",
   "name": "PanchApp",
-  "description": "This is a PoC for JS technologies.",
+  "description": "PanchApp App developed with ReactJs",
   "authors": "Ale Arce - Javier Baccarelli",
   "dependencies": {
     "basic-auth": "^1.0.0",
-    "express": "latest",
-    "firebase": "latest",
-    "gulp": "latest",
-    "gulp-browserify": "latest",
-    "gulp-concat": "latest",
-    "gulp-react": "latest",
-    "moment": "latest",
-    "react": "latest",
-    "reactfire": "latest",
-    "reactify": "latest"
+    "express": "4.10.4",
+    "firebase": "2.0.6",
+    "gulp": "3.8.10",
+    "gulp-browserify": "0.5.0",
+    "gulp-concat": "2.4.2",
+    "gulp-react": "2.0.0",
+    "gulp-jshint": "1.9.0",
+    "jshint-stylish": "1.0.0",
+    "moment": "2.8.4",
+    "react": "0.12.1",
+    "reactify": "0.17.1"
   },
-  "engines": {
-    "node": "latest"
-  }
+  "engine": "node 0.10.33"
 }
