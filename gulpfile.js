@@ -2,20 +2,27 @@ var browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
     gulp = require('gulp'),
     react = require('gulp-react'),
-    jshint = require("gulp-jshint");
+    jshint = require("gulp-jshint"),
+    rimraf = require('rimraf'),
+    sass = require('gulp-sass');
+
+gulp.task('clean', function () {
+    rimraf.sync('./app-components/target');
+});
 
 gulp.task('copy', function() {
     gulp.src('./app-components/src/index.html')
         .pipe(gulp.dest('./app-components/target'));
-}); 
+});
 
 gulp.task('copy-img', function() {
     gulp.src('./app-components/src/img/**/*')
     .pipe(gulp.dest('./app-components/target/img/'));
 });
 
-gulp.task('copy-css', function() {
-    gulp.src('./app-components/src/components/**/*.css')
+gulp.task('sass', function () {
+    gulp.src('./app-components/src/components/**/*.scss')
+        .pipe(sass())
         .pipe(gulp.dest('./app-components/target/components'));
 });
 
@@ -44,6 +51,6 @@ gulp.task('watch', ['heroku:build'], function() {
     gulp.watch('./app-components/src/**/*', ['heroku:build']);
 });
 
-gulp.task('heroku:build', ['compile-react', 'browserify', 'lint', 'copy', 'copy-css', 'copy-img']);
+gulp.task('heroku:build', ['clean', 'compile-react', 'browserify', 'lint', 'copy', 'sass', 'copy-img']);
 
 gulp.task('default', ['watch']);
