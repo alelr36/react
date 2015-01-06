@@ -30,23 +30,23 @@ var Debt = React.createClass({
         var twoWeeks = Moment().subtract(2, 'weeks').format('MM/DD/YYYY');
         var threeWeeks = Moment().subtract(3, 'weeks').format('MM/DD/YYYY');
         var fourWeeks = Moment().subtract(4, 'weeks').format('MM/DD/YYYY');
-        var fiveWeeks = Moment().subtract(5, 'weeks').format('MM/DD/YYYY');
         var date = this.props.date;
 
         return cx({
             'pic': true,
-            'mild--red-card': date < twoWeeks && date > threeWeeks,
-            'red-card': (date < threeWeeks && date > fourWeeks) || date < fiveWeeks,
-            'red-glowing-card': date < fourWeeks && date > fiveWeeks
+            'mild--red-card': Moment(date, 'MM/DD/YYYY').isBefore(twoWeeks) && Moment(date, 'MM/DD/YYYY').isAfter(threeWeeks),
+            'red-card': Moment(date, 'MM/DD/YYYY').isBefore(threeWeeks) && Moment(date, 'MM/DD/YYYY').isAfter(fourWeeks),
+            'red-glowing-card': Moment(date, 'MM/DD/YYYY').isBefore(fourWeeks)
         });
     },
 
     getHiddenSealClasses: function () {
         var fiveWeeks = Moment().subtract(5, 'weeks').format('MM/DD/YYYY');
+        var date = this.props.date;
 
         return cx({
-            'hidden': this.props.date > fiveWeeks,
-            'double-penalty': this.props.date < fiveWeeks
+            'hidden': Moment(date, 'MM/DD/YYYY').isAfter(fiveWeeks),
+            'double-penalty': Moment(date, 'MM/DD/YYYY').isBefore(fiveWeeks)
         });
     },
 

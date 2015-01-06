@@ -2,7 +2,8 @@ var React = require('react'),
     Debt = require('../debt/debt'),
     NewCard = require('../new-card/new-card'),
     LogShow = require('../log-show/log-show'),
-    Firebase = require('firebase');
+    Firebase = require('firebase'),
+    Moment = require('moment');
 
 var firebaseRef = new Firebase("http://mutombo-cards.firebaseio.com/");
 
@@ -86,7 +87,7 @@ var DebtContainer = React.createClass({
             var dateA = obj1.data.date;
             var dateB = obj2.data.date;
 
-            if (dateA < dateB){
+            if (Moment(dateB, 'MM/DD/YYYY').isAfter(dateA)){
                 return -1;
             } else {
                 return 1;
