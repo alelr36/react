@@ -34,9 +34,9 @@ var Debt = React.createClass({
 
         return cx({
             'pic': true,
-            'mild--red-card': Moment(date, 'MM/DD/YYYY').isBefore(twoWeeks) && Moment(date, 'MM/DD/YYYY').isAfter(threeWeeks),
-            'red-card': Moment(date, 'MM/DD/YYYY').isBefore(threeWeeks) && Moment(date, 'MM/DD/YYYY').isAfter(fourWeeks),
-            'red-glowing-card': Moment(date, 'MM/DD/YYYY').isBefore(fourWeeks)
+            'mild-red-card': (Moment(date, 'MM/DD/YYYY').isBetween(threeWeeks, twoWeeks)) || Moment(date, 'MM/DD/YYYY').isSame(twoWeeks),
+            'red-card': (Moment(date, 'MM/DD/YYYY').isBetween(fourWeeks, threeWeeks)) || Moment(date, 'MM/DD/YYYY').isSame(threeWeeks),
+            'red-glowing-card': (Moment(date, 'MM/DD/YYYY').isBefore(fourWeeks) ) || Moment(date, 'MM/DD/YYYY').isSame(fourWeeks)
         });
     },
 

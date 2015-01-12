@@ -15,7 +15,7 @@
     "gulp-react": "2.0.0",
     "gulp-sass": "^1.2.4",
     "jshint-stylish": "1.0.0",
-    "moment": "2.8.4",
+    "moment": "2.9.0",
     "react": "0.12.1",
     "reactify": "0.17.1",
     "rimraf": "^2.2.8"
