@@ -4,7 +4,8 @@ var browserify = require('gulp-browserify'),
     react = require('gulp-react'),
     jshint = require("gulp-jshint"),
     rimraf = require('rimraf'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    reactify = require('reactify');
 
 gulp.task('clean', function () {
     rimraf.sync('./app-components/target');
@@ -33,12 +34,6 @@ gulp.task('browserify', function() {
         .pipe(gulp.dest('./app-components/target'));
 });
 
-gulp.task('compile-react', function () {
-    return gulp.src('./app-components/src/components/**/*.js')
-        .pipe(react())
-        .pipe(gulp.dest('./app-components/target/components'));
-});
-
 gulp.task("lint", function() {
     return gulp.src("./app-components/src/components/**/*.js")
         .pipe(react())
@@ -51,6 +46,6 @@ gulp.task('watch', ['heroku:build'], function() {
     gulp.watch('./app-components/src/**/*', ['heroku:build']);
 });
 
-gulp.task('heroku:build', ['clean', 'compile-react', 'browserify', 'lint', 'copy', 'sass', 'copy-img']);
+gulp.task('heroku:build', ['clean', 'browserify', 'lint', 'copy', 'sass', 'copy-img']);
 
 gulp.task('default', ['watch']);
