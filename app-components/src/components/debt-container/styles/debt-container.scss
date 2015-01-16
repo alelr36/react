@@ -1,61 +1,65 @@
-body { 
-  	background:#222;  
-}
+.panchapp-page {
+	background: #222;
 
-.no-sausage {
-	background: url('/assets/img/noSausage.png') no-repeat fixed center center #222;
+	.no-sausage {
+		background: url('/assets/img/noSausage.png') no-repeat fixed center center #222;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.debt-container {
+		display: inline-block;
+	}
+
+	.button-container {
+		display: inline-block;
+		margin:0 1rem 1rem;
+		z-index: 400;
+		position: relative;
+
+		.pretty-button {
+			padding: 6px 16px;
+			font-size: 18px;
+			color:white;
+			text-align: center;
+			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+			background: #2ecc71;
+			cursor: pointer;
+			border: none;
+		}
+	}
+
+	.background-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #000;
+		opacity: .7;
+		z-index: 200;
+	}
+
+	.animate {
+		-webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
+		animation: mysecond 0.2s;
+	}
 }
 
 .loading {
 	background: url('/assets/img/loading10.gif') no-repeat fixed center center #222;
 }
 
-.hidden {
-    display: none;
-}
-
-.button-container {
-	display: inline-block;
-	margin:0 1rem 1rem;
-	z-index: 400;
-	position: relative;
-}
-
-.pretty-button {	
-	padding: 6px 16px;
-  	font-size: 18px;
-	color:white;
-	text-align: center;
-	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-	background: #2ecc71;
-	cursor: pointer;
-	border: none;	
-}
-
-#background-overlay {
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-  	width: 100%;
-  	height: 100%;
-  	background-color: #000;
-  	opacity: .7;
-  	z-index: 200;
-}
-
-.animate {
-  	-webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
-  	animation: mysecond 0.2s;
-}
-
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mysecond {
-  	from {margin-top: 0px;}
-  	to {margin-top: 10px;}
+	from {margin-top: 0px;}
+	to {margin-top: 10px;}
 }
 
 /* Standard syntax */
 @keyframes mysecond {
-  	from {margin-top: 0px;}
-  	to {margin-top: 10px;}
+	from {margin-top: 0px;}
+	to {margin-top: 10px;}
 }

@@ -49,7 +49,7 @@ var DebtContainer = React.createClass({
     render: function () {
         return (
             <div>
-                <div id="background-overlay" className='hidden' onClick={this.hideAllOverlays}></div>
+                <div className='background-overlay hidden' onClick={this.hideAllOverlays}></div>
                     <NewCard fnReset={this.resetForm}/>
                     <LogShow fnReset={this.resetForm}/>
                 <div className='debt-container'>

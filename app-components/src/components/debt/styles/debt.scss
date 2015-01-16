@@ -10,15 +10,70 @@
     margin:0 1rem 1rem;
     -webkit-animation: myDebt 0.2s; /* Chrome, Safari, Opera */
     animation: myDebt 0.2s;
-}
 
-p {
-    font-family: 'Roboto Condense', Arial, serif;
-    font-size: 15px;
-    margin-top: 0;
-    max-height: 18px;
-    padding: 5px 0;
-    word-wrap: break-word;
+    .mild-red-card {
+        box-shadow: 0 0 35px red;
+    }
+
+    .red-card {
+        box-shadow: 0 0 50px 15px red;
+    }
+
+    .double-penalty {
+        width: 260px;
+        height: 115px;
+        position: absolute;
+        margin-left: -136px;
+        margin-top: -24px;
+    }
+
+    .red-glowing-card {
+        -webkit-animation:redGlow ease-in-out 2s infinite;
+        animation:redGlow ease-in-out 2s infinite;
+    }
+
+    .debt-data {
+        .card-item {
+            font-family: 'Roboto Condense', Arial, serif;
+            font-size: 15px;
+            margin-top: 0;
+            max-height: 18px;
+            padding: 5px 0;
+            word-wrap: break-word;
+        }
+
+        .pic {
+            margin-top: 10px;
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 6px;
+            box-shadow: 0 0 5px black;
+        }
+
+        .clouds-flat-button {
+            width: 100%;
+            height: 60px;
+            font-size: 22px;
+            color:white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+            background: #2c3e50;
+            border: 0;
+            border-bottom: 2px solid #dadedf;
+            cursor: pointer;
+            -webkit-box-shadow: inset 0 -2px #dadedf;
+            box-shadow: inset 0 -2px #dadedf;
+        }
+        .clouds-flat-button:active {
+            top: 1px;
+            outline: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .clouds-flat-button:focus {
+            outline: none;
+        }
+    }
 }
 
 /* Chrome, Safari, Opera */
@@ -31,59 +86,6 @@ p {
 @keyframes myDebt {
     from {margin: 0 0 0;}
     to {margin:0 1rem 1rem;}
-}
-
-.pic {
-    margin-top: 10px;
-    max-width: 150px;
-    max-height: 150px;
-    border-radius: 6px;
-    box-shadow: 0 0 5px black;
-}
-
-.clouds-flat-button {
-    width: 100%;
-    height: 60px;
-    font-size: 22px;
-    color:white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    background: #2c3e50;
-    border: 0;
-    border-bottom: 2px solid #dadedf;
-    cursor: pointer;
-    -webkit-box-shadow: inset 0 -2px #dadedf;
-    box-shadow: inset 0 -2px #dadedf;
-}
-.clouds-flat-button:active {
-    top: 1px;
-    outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-.clouds-flat-button:focus {
-    outline: none;
-}
-
-.mild-red-card {
-    box-shadow: 0 0 35px red;
-}
-
-.red-card {
-    box-shadow: 0 0 50px 15px red;
-}
-
-.double-penalty {
-    width: 260px;
-    height: 115px;
-    position: absolute;
-    margin-left: -136px;
-    margin-top: -24px;
-}
-
-.red-glowing-card {
-    -webkit-animation:redGlow ease-in-out 2s infinite;
-    animation:redGlow ease-in-out 2s infinite;
 }
 
 @-webkit-keyframes redGlow {

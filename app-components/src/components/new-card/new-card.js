@@ -33,13 +33,9 @@ NewCard = React.createClass ({
 			<div className='button-container'>
 				<input className='pretty-button' type='button' value='Nueva Card' onClick={this.showNewCard}/>
                 <div className='new-card hidden' id='new-card-box'>
-
                     {this.renderUsersSelect()}
-
                     {this.renderCatSelect()}
-                    
-                    <input id='otherReason' maxLength='50' className='other-reason hidden' type='text' placeholder='Especificar...' />                        
-                    
+                    <input id='otherReason' maxLength='50' className='other-reason hidden' type='text' placeholder='Especificar...' />
                     <img id="selectedImage" className='default-image' src={this.state.imageSrc} />
                     <input className='midnight-blue-flat-button' type='button' value='Agregar' onClick={this.addCard}/>
                 </div>
@@ -49,7 +45,7 @@ NewCard = React.createClass ({
 
     renderUsersSelect: function () {
         return (
-            <select id='usersSelect' className='dropdown' defaultValue='select' onChange={this.getImage}>
+            <select id='usersSelect' className='users-select dropdown' defaultValue='select' onChange={this.getImage}>
                 <option value='select'>Usuarios</option>
                 {this.renderUsers()}
             </select>
@@ -67,7 +63,7 @@ NewCard = React.createClass ({
 
     renderCatSelect: function () {
         return (
-            <select id='cat' className='dropdown' defaultValue='panched' onChange={this.showOtherInput}>
+            <select id='cat' className='cat dropdown' defaultValue='panched' onChange={this.showOtherInput}>
                 <option value='panched'>Panched</option>
                 <option value='mugre'>Mugre</option>
                 <option value='reunion'>Llamada en Reunión</option>

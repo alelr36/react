@@ -18,9 +18,9 @@ var Debt = React.createClass({
     renderCardData: function () {
         return (
             <div className='debt-data'>
-                <p>{this.props.name}</p>
-                <p>{this.props.cat}</p>
-                <p>Fecha: {Moment(this.props.date, 'MM/DD/YYYY - HH:mm').format('DD-MM-YYYY - HH:mm')} </p>
+                <p className='card-item'>{this.props.name}</p>
+                <p className='card-item'>{this.props.cat}</p>
+                <p className='card-item'>Fecha: {Moment(this.props.date, 'MM/DD/YYYY - HH:mm').format('DD-MM-YYYY - HH:mm')} </p>
                 <input className='clouds-flat-button' type='button' value='Pagado' onClick={this.deleteCard} />
             </div>
         );

@@ -10,9 +10,10 @@
     max-width: 800px;
     height: 300px;
     max-height: 300px;
-    overflow-y: scroll;     
+    overflow-y: scroll;
+
+    .logList {
+        list-style-type: none;
+    }
 }
 
-.logList {
-    list-style-type: none;	
-} 
