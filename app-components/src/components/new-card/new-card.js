@@ -103,6 +103,7 @@ NewCard = React.createClass ({
     showNewCard: function () {
         var element = document.getElementById('new-card-box');
         var background = document.getElementById('background-overlay');
+
         if (!element.className.match('hidden')) {
             element.classList.add('hidden');
             element.classList.remove('animate');
