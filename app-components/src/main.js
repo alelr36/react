@@ -1,4 +1,4 @@
 var React = require('react');
-var DebtContainer = require('./components/debt-container/debt-container');
+var DebtContainer = require('./components/panchapp-page/panchapp-page');
 
-React.render(<DebtContainer className='debt-container'/>, document.body);
+React.render(<DebtContainer />, document.body);

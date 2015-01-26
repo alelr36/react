@@ -87,7 +87,7 @@ var DebtContainer = React.createClass({
             var dateA = obj1.data.date;
             var dateB = obj2.data.date;
 
-            if (Moment(dateB, 'MM/DD/YYYY, HH:mm').isAfter(dateA)){
+            if (Moment(dateB).isAfter(dateA)){
                 return -1;
             } else {
                 return 1;
