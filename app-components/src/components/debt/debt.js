@@ -1,7 +1,7 @@
 var React = require('react/addons'),
     Moment = require('moment'),
     Firebase = require('firebase'),
-    cx = React.addons.classSet;
+    classNames = require('classnames');
 
 var Debt = React.createClass({
 
@@ -32,11 +32,11 @@ var Debt = React.createClass({
         var fourWeeks = Moment().subtract(4, 'weeks').format('MM/DD/YYYY');
         var date = this.props.date;
 
-        return cx({
+        return classNames({
             'pic': true,
-            'mild-red-card': (Moment(date, 'MM/DD/YYYY').isBetween(threeWeeks, twoWeeks)) || Moment(date, 'MM/DD/YYYY').isSame(twoWeeks),
-            'red-card': (Moment(date, 'MM/DD/YYYY').isBetween(fourWeeks, threeWeeks)) || Moment(date, 'MM/DD/YYYY').isSame(threeWeeks),
-            'red-glowing-card': (Moment(date, 'MM/DD/YYYY').isBefore(fourWeeks) ) || Moment(date, 'MM/DD/YYYY').isSame(fourWeeks)
+            'mild-red-card': this.getDateRange(date, twoWeeks, threeWeeks, 'between'),
+            'red-card': this.getDateRange(date, threeWeeks, fourWeeks, 'between'),
+            'red-glowing-card': this.getDateRange(date, fourWeeks, null, 'before')
         });
     },
 
@@ -44,10 +44,23 @@ var Debt = React.createClass({
         var fiveWeeks = Moment().subtract(5, 'weeks').format('MM/DD/YYYY');
         var date = this.props.date;
 
-        return cx({
-            'hidden': Moment(date, 'MM/DD/YYYY').isAfter(fiveWeeks),
+        return classNames({
+            'hidden': this.getDateRange(date, fiveWeeks, null, 'after'),
             'double-penalty': Moment(date, 'MM/DD/YYYY').isBefore(fiveWeeks)
         });
+    },
+
+    getDateRange: function (date, start, end, period) {
+        if (period === 'between') {
+            return Moment(date, 'MM/DD/YYYY').isBetween(end, start) ||
+                Moment(date, 'MM/DD/YYYY').isSame(start);
+        } else if (period === 'before') {
+            return Moment(date, 'MM/DD/YYYY').isBefore(start) ||
+                Moment(date, 'MM/DD/YYYY').isSame(start);
+        } else {
+            return Moment(date, 'MM/DD/YYYY').isAfter(start) ||
+                Moment(date, 'MM/DD/YYYY').isSame(start);
+        }
     },
 
     getUser: function () {

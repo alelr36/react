@@ -1,10 +1,6 @@
 .panchapp-page {
 	background: #222;
 
-	.no-sausage {
-		background: url('/assets/img/noSausage.png') no-repeat fixed center center #222;
-	}
-
 	.hidden {
 		display: none;
 	}
@@ -46,6 +42,10 @@
 		-webkit-animation: mysecond 0.2s; /* Chrome, Safari, Opera */
 		animation: mysecond 0.2s;
 	}
+}
+
+.no-sausage {
+    background: url('/assets/img/noSausage.png') no-repeat fixed center center #222;
 }
 
 .loading {

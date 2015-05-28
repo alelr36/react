@@ -18,7 +18,8 @@
     "moment": "2.9.0",
     "react": "0.12.1",
     "reactify": "0.17.1",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.2.8",
+    "classnames": "~2.1.2"
   },
   "engine": "node 0.10.33"
 }
