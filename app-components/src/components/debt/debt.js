@@ -5,7 +5,7 @@ var React = require('react/addons'),
 
 var Debt = React.createClass({
 
-    render : function () {
+    render: function () {
         return (
             <div className='card'>
                 <img className={this.getPicClasses()} src={this.getUser()}/>
@@ -64,13 +64,7 @@ var Debt = React.createClass({
     },
 
     getUser: function () {
-        var userPicture = '/assets/img/panched.gif';
-
-        if (this.props.user) {
-            userPicture = 'https://graph.facebook.com/' + this.props.user + '/picture?width=150&height=150';
-        }
-
-        return userPicture;
+        return this.props.user || '/assets/img/panched.gif';
     },    
 
     deleteCard: function() {

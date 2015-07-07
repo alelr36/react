@@ -1,6 +1,9 @@
 var React = require('react'),
     Moment = require('moment'),
-	Firebase = require('firebase');
+	Firebase = require('firebase'),
+    _ = require('lodash');
+
+var firebaseUsersRef = new Firebase("http://mutombo-users.firebaseio.com/");
 
 NewCard = React.createClass ({
 
@@ -13,8 +16,6 @@ NewCard = React.createClass ({
     },
 
     componentWillMount: function () {
-        var firebaseUsersRef = new Firebase("http://mutombo-users.firebaseio.com/");
-
         firebaseUsersRef.on('child_added', function(data) {
             this.users.push({
                 id: data.key(),
@@ -78,16 +79,13 @@ NewCard = React.createClass ({
     },
 
     getImage: function () {
-        if(document.getElementById('usersSelect').selectedIndex === 0) {
-            this.setState({
-                    imageSrc: '/assets/img/panched.gif'
-            });
-        } else {
-            this.setState({
-                    imageSrc: 'https://graph.facebook.com/' + document.getElementById('usersSelect').value + '/picture?width=150&height=150'
-            });
-        }
-    },    
+        var select = document.getElementById('usersSelect');
+        var picture = this.state.users[select.selectedIndex - 1].data.username;
+
+        this.setState({
+            imageSrc: picture
+        });
+    },
 
     showOtherInput: function () {
         var select = document.getElementById('cat');

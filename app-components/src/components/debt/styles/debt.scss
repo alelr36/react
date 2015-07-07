@@ -11,6 +11,16 @@
     -webkit-animation: myDebt 0.2s; /* Chrome, Safari, Opera */
     animation: myDebt 0.2s;
 
+    .pic {
+        width: auto;
+        height: 160px;
+        display: block;
+        clear: both;
+        margin: 10px auto;
+        border-radius: 6px;
+        box-shadow: 0 0 5px black;
+    }
+
     .mild-red-card {
         box-shadow: 0 0 35px red;
     }
@@ -40,14 +50,6 @@
             max-height: 18px;
             padding: 5px 0;
             word-wrap: break-word;
-        }
-
-        .pic {
-            margin-top: 10px;
-            max-width: 150px;
-            max-height: 150px;
-            border-radius: 6px;
-            box-shadow: 0 0 5px black;
         }
 
         .clouds-flat-button {
