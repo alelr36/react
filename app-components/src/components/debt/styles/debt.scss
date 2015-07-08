@@ -1,21 +1,22 @@
 .card {
     display: inline-block;
-    padding:1.5rem;
+    padding: 1.5rem;
     background: #ecf0f1;
-    color:#454545;
+    color: #454545;
     width: 200px;
     max-width: 200px;
     height: 368px;
     max-height: 368px;
-    margin:0 1rem 1rem;
-    -webkit-animation: myDebt 0.2s; /* Chrome, Safari, Opera */
+    margin: 0 1rem 1rem;
+    -webkit-animation: myDebt 0.2s;
     animation: myDebt 0.2s;
+    position: relative;
 
     .pic {
         width: auto;
+        max-width: 160px;
         height: 160px;
         display: block;
-        clear: both;
         margin: 10px auto;
         border-radius: 6px;
         box-shadow: 0 0 5px black;
@@ -33,8 +34,8 @@
         width: 260px;
         height: 115px;
         position: absolute;
-        margin-left: -136px;
-        margin-top: -24px;
+        top: 0;
+        left: 38px;
     }
 
     .red-glowing-card {
